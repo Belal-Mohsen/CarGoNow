@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +29,79 @@ namespace CarGoNowApp
 
         private void login_btn_Click(object sender, RoutedEventArgs e)
         {
+            bool isValid = false;
+            string username = user_name_input.Text;
+            string password = password_input.Password;
 
+
+            if (login_manager_btn.IsChecked == true)
+            {
+
+
+                // check database for log-in /////
+                isValid = checkCredentials(username, password);
+
+                if (isValid)
+                {
+                    ManagerProfile managerProfile = new ManagerProfile();
+                    managerProfile.Show();
+                    this.Close();
+                }
+
+            }
+            else if (login_em_btn.IsChecked == true)
+            {
+
+                // check database for log-in 
+                MessageBox.Show("Oops, your username or password is not correct");
+
+            }
+            else
+            {
+                MessageBox.Show("Please Select Your Role!");
+
+            }
+
+        }
+
+        private bool checkCredentials(string username, string password)
+        {
+            bool isCredentialsValid = false;
+            string server = "localhost";
+            string database = "cargonowdb";
+            string uid = "root";
+            string pass = "Pass4Desk";
+
+            string constring = "Server=" + server + "; database=" + database + "; uid=" + uid + "; pwd=" + pass;
+            using (MySqlConnection conn = new MySqlConnection(constring))
+            {
+                conn.Open();
+
+                string query = "SELECT * FROM Login WHERE user_name = @username";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@username", username);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        string storedPasswordHash = reader["password"].ToString();
+                        if (password == storedPasswordHash)
+                        {
+                            isCredentialsValid = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Invalid password.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("User not found.");
+                    }
+                }
+            }
+            return isCredentialsValid;
         }
     }
 }
