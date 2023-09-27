@@ -22,20 +22,20 @@
                 </TransformGroup>
             </Border.RenderTransform>
             <Border.Background>
-                <ImageBrush Stretch="Fill" ImageSource="\Resources\bg-img-car.jpg"/>
+                <ImageBrush Stretch="Fill" ImageSource="/bg-img-car.jpg"/>
             </Border.Background>
             <Image Margin="33,-4,-33,4"/>
         </Border>
         <Grid Margin="555,70,0,70" Background="Transparent" MaxWidth="300" MaxHeight="500">
             <Border CornerRadius="35,0,0,35" Margin="0,0,-45,0">
                 <Border.Background>
-                    <ImageBrush Stretch="Fill" ImageSource="\Resources\bg-img.png"/>
+                    <ImageBrush Stretch="Fill" ImageSource="/bg-img.png"/>
                 </Border.Background>
                 <Label Content="LOG IN" HorizontalAlignment="Center" Height="69" Margin="0,33,0,0" VerticalAlignment="Top" Width="182" FontWeight="Bold" FontSize="36"
                    HorizontalContentAlignment="Center" Foreground="#FFF4F0F0" FontFamily="Comic Sans MS"/>
             </Border>
         </Grid>
-        <Image HorizontalAlignment="Left" Height="77" Margin="33,41,0,0" VerticalAlignment="Top" Width="303" Source="\Resources\logo.png"/>
+        <Image HorizontalAlignment="Left" Height="77" Margin="33,41,0,0" VerticalAlignment="Top" Width="303" Source="/logo.png"/>
         <Button x:Name="login_btn" Content="Log in" HorizontalAlignment="Left" Margin="713,393,0,0" VerticalAlignment="Top" Width="134" Height="37" Background="#FFE7F7EA" Foreground="#FF161111" FontWeight="Bold" FontSize="18" FontFamily="Comic Sans MS" Click="login_btn_Click"/>
         <TextBox x:Name="user_name_input" HorizontalAlignment="Left" Margin="646,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="38" Width="268" Foreground="#FF191818" FontSize="16" Background="#FFE7F7EA"/>
         <PasswordBox x:Name="password_input" HorizontalAlignment="Left" Margin="646,285,0,0"  VerticalAlignment="Top" Height="38" Width="268" Foreground="#FF191818" FontSize="16" Background="#FFE7F7EA" />

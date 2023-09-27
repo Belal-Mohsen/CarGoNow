@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CarGoNow.Views
+namespace CarGoNowApp.Views
 {
     /// <summary>
     /// Interaction logic for UCEmployee.xaml
@@ -24,7 +24,6 @@ namespace CarGoNow.Views
         {
             InitializeComponent();
         }
-
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
 

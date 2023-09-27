@@ -107,6 +107,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\UCCustomer.xaml.cs">
+      <DependentUpon>UCCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UCEmployee.xaml.cs">
+      <DependentUpon>UCEmployee.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -119,8 +125,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ManagerProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UCCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UCEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ManagerProfile.xaml.cs">
+      <DependentUpon>ManagerProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -149,6 +170,39 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bg-img-car.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bg-img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="car2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="people.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bill.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="reservation.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="clients.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="car.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="settings.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logout.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
