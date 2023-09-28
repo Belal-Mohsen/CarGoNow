@@ -7,18 +7,42 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="191*"/>
+            <RowDefinition Height="389*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
 
-            <DataGrid  Margin="0,439,0,0"/>
+            <Label Content="Total Amount:" Grid.Row="1" Grid.Column="0" Margin="10,10,143,27" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" Grid.RowSpan="2" />
+            <TextBox x:Name="txtTotalAmount" Grid.Row="1" Grid.Column="0" Margin="129,18,28,2" RenderTransformOrigin="0.5,0.5" FontSize="14" FontWeight="Bold" />
+
+
+            <Label Content="Payment method:" Grid.Row="1" Grid.Column="1" Margin="10,10,134,32" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" Grid.RowSpan="2" />
+            <ComboBox x:Name="boxPaymentMethod" Grid.Row="1" Grid.Column="1" Margin="147,17,10,3" FontSize="14" FontWeight="Bold" >
+                <ComboBoxItem x:Name="comboCreditCard" Content="Credit Card" FontFamily="Comic Sans MS"/>
+                <ComboBoxItem x:Name="comboDebitCard" Content="Debit Card" FontFamily="Comic Sans MS"/>
+                <ComboBoxItem x:Name="comboCash" Content="Cash" FontFamily="Comic Sans MS"/>
+                <ComboBoxItem x:Name="comboETransfer" Content="eTransfer" FontFamily="Comic Sans MS"/>
+            </ComboBox>
+
+            <Label Content="Payment Date:" Grid.Row="3" Grid.Column="0" Margin="10,10,138,0" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" />
+            <DatePicker x:Name="pickerPaymentDate" Grid.Row="3" Grid.Column="0" Margin="129,10,28,10" FontSize="14" FontWeight="Bold" />
+
+
+
         </Grid>
-        <Grid>
-            <DataGrid x:Name="em_data"  Margin="37,82,37,101" />
-            <Label Content="Total amount" HorizontalAlignment="Left" Margin="126,77,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="24"/>
-            <TextBox HorizontalAlignment="Left" Margin="350,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" FontSize="24" FontFamily="Comic Sans MS"/>
-            <Label Content="Payment method" HorizontalAlignment="Left" Margin="126,184,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="24"/>
-            <ComboBox HorizontalAlignment="Left" Margin="350,191,0,0" VerticalAlignment="Top" Width="201" Height="34" FontFamily="Comic Sans MS" FontSize="24"/>
-            <Label Content="Payment Date" HorizontalAlignment="Left" Margin="126,290,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="24"/>
-            <DatePicker HorizontalAlignment="Left" Margin="350,290,0,0" VerticalAlignment="Top" Width="201" Height="44" FontFamily="Comic Sans MS" FontSize="24"/>
-        </Grid>
+        <DataGrid Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+
     </Grid>
 </UserControl>

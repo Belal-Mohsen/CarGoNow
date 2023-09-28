@@ -7,30 +7,45 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Grid>
-            <DataGrid x:Name="em_data"  Margin="28,37,46,146" />
-            <Label x:Name="checkin" Content="Check-in" HorizontalAlignment="Left" Margin="89,103,0,0" VerticalAlignment="Top" Width="176" FontSize="24" FontFamily="Comic Sans MS"/>
-            <Label x:Name="checkout" Content="Check-out" HorizontalAlignment="Left" Margin="523,103,0,0" VerticalAlignment="Top" Width="176" FontSize="24" FontFamily="Comic Sans MS"/>
-            <Label x:Name="carid" Content="Car ID" HorizontalAlignment="Left" Margin="89,193,0,0" VerticalAlignment="Top" Width="176" FontSize="24" FontFamily="Comic Sans MS"/>
-            <TextBox HorizontalAlignment="Left" Margin="238,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" FontSize="24"/>
-            <Label x:Name="cuid" Content="Customer ID" HorizontalAlignment="Left" Margin="87,271,0,0" VerticalAlignment="Top" Width="176" FontSize="24" FontFamily="Comic Sans MS"/>
-            <TextBox HorizontalAlignment="Left" Margin="238,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" FontSize="24"/>
-            <Label x:Name="empid" Content="Employee ID" HorizontalAlignment="Left" Margin="87,357,0,0" VerticalAlignment="Top" Width="176" FontSize="24" FontFamily="Comic Sans MS"/>
-            <TextBox HorizontalAlignment="Left" Margin="238,365,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" FontSize="24"/>
-            <Button Content="Make a reservation &amp; Generate Bill" HorizontalAlignment="Left" Margin="523,361,0,0" VerticalAlignment="Top" Height="28" Width="380" FontSize="18" FontFamily="Comic Sans MS"/>
-            <Button Content="Update Reservation" HorizontalAlignment="Left" Margin="636,212,0,0" VerticalAlignment="Top" Height="41" Width="229" FontSize="20" FontFamily="Comic Sans MS"/>
-            <Button Content="Delete Reservation" HorizontalAlignment="Left" Margin="636,271,0,0" VerticalAlignment="Top" FontSize="20" Height="43" Width="229" FontFamily="Comic Sans MS"/>
-            <DatePicker HorizontalAlignment="Left" Margin="238,111,0,0" VerticalAlignment="Top" Width="196" Height="27"/>
-            <DatePicker HorizontalAlignment="Left" Margin="669,111,0,0" VerticalAlignment="Top" Width="196" Height="27"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="191*"/>
+            <RowDefinition Height="389*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Check-in:" Grid.Row="1" Grid.Column="0" Margin="10,10,171,0" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" />
+            <DatePicker x:Name="pickerCheckin" Grid.Row="1" Grid.Column="0" Margin="129,10,21,0" RenderTransformOrigin="0.5,0.5" FontSize="14" FontWeight="Bold" />
 
 
+            <Label Content="Check-out:" Grid.Row="1" Grid.Column="1" Margin="10,10,162,30" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" Grid.RowSpan="2" />
+            <DatePicker x:Name="pickerCheckout" Grid.Row="1" Grid.Column="1" Margin="109,10,40,0" FontSize="14" FontWeight="Bold" />
 
+            <Label Content="Car ID:" Grid.Row="2" Grid.Column="0" Margin="10,10,161,0" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" />
+            <TextBox x:Name="txtCarId" Grid.Row="2" Grid.Column="0" Margin="129,10,32,10" FontSize="14" FontWeight="Bold" />
 
+            <Label Content="Customer ID:" Grid.Row="3" Grid.Column="0" Margin="10,4,124,6" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" RenderTransformOrigin="0.379,1.274" />
+            <TextBox x:Name="txtCustomerId" Grid.Row="3" Grid.Column="0" Margin="129,10,32,10" FontSize="14" FontWeight="Bold" />
 
+            <Label Content="Employee ID:" Grid.Row="2" Grid.Column="1" Margin="10,4,148,8" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" />
+            <TextBox x:Name="txtEmployeeId" Grid.Row="2" Grid.Column="1" Margin="118,10,40,10" FontSize="14" FontWeight="Bold" />
 
+            <Button Content="Update Reservation" Grid.Row="1" Grid.Column="2" Margin="11,9,133,11" />
+            <Button Content="Delete Reservation" Grid.Row="2" Grid.Column="2" Margin="11,8,133,12" />
+            <Button Content="Make Reservation / Generate Bill" Grid.Row="3" Grid.Column="2" Margin="11,8,41,12"/>
         </Grid>
-        <Grid>
-            <DataGrid  Margin="0,439,0,0"/>
-        </Grid>
+
+        <DataGrid Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+
     </Grid>
 </UserControl>
