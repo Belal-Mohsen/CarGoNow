@@ -53,7 +53,7 @@ namespace CarGoNowApp
 
         private void manage_car_btn_Click(object sender, RoutedEventArgs e)
         {
-
+            contentControl.Content = new UCCar();
         }
 
         private void manage_em_btn_Click(object sender, RoutedEventArgs e)

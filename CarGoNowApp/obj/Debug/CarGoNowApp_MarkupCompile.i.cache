@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\App.xaml
-4-729245009
+8-764113169
 
-9190969829
+131277590565
 331229256004
-MainWindow.xaml;ManagerProfile.xaml;Views\UCCustomer.xaml;Views\UCEmployee.xaml;
+MainWindow.xaml;ManagerProfile.xaml;Views\UCBill.xaml;Views\UCCar.xaml;Views\UCCustomer.xaml;Views\UCEmployee.xaml;Views\UCReservation.xaml;Views\UCSettings.xaml;
 
 True
 

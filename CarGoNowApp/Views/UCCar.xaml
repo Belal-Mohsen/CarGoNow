@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="CarGoNowApp.Views.UCCar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CarGoNowApp.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Car ID:" Grid.Column="0" Margin="10,29,170,1" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" Grid.RowSpan="2" />
+            <TextBox x:Name="txtCarID" Grid.Row="1" Grid.Column="0" Margin="153,2,14,8" RenderTransformOrigin="0.5,0.5" FontSize="14" FontWeight="Bold" Height="25" Width="120" />
+
+
+            <Label Content="Model:" Grid.Row="2" Grid.Column="0" Margin="10,0,183,0" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" />
+            <TextBox x:Name="txtModel" Grid.Row="2" Grid.Column="0" Margin="153,2,14,8" FontSize="14" FontWeight="Bold" Width="120" Height="25" />
+
+            <Label Content="Availability:" Grid.Row="2" Grid.Column="0" Margin="7,28,173,1" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" Grid.RowSpan="2" />
+            <TextBox x:Name="txtAvailability" Grid.Row="3" Grid.Column="0" Margin="153,1,14,9" FontSize="14" FontWeight="Bold" Height="25" Width="120" />
+
+            <Label Content="Year:" Grid.Column="1" Margin="10,5,168,26" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" Grid.Row="1" Grid.RowSpan="2" />
+            <TextBox x:Name="txtYear" Grid.Row="1" Grid.Column="1" Margin="152,2,14,8" FontSize="14" FontWeight="Bold" Width="120" Height="25" />
+
+            <Label Content="Color:" Grid.Row="2" Grid.Column="1" Margin="10,6,189,22" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" Grid.RowSpan="2" />
+            <TextBox x:Name="txtColor" Grid.Row="2" Grid.Column="1" Margin="153,3,13,7" FontSize="14" FontWeight="Bold" Width="120" Height="25" />
+
+            <Label Content="License Plate:" Grid.Row="3" Grid.Column="1" Margin="10,5,150,25" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" Grid.RowSpan="2" />
+            <TextBox x:Name="txtLPlate" Grid.Row="3" Grid.Column="1" Margin="154,3,12,7" FontSize="14" FontWeight="Bold" Width="120" Height="25" />
+
+            <Label Content="Transmission Type:" Grid.Row="3" Grid.Column="0" Margin="5,29,114,1" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" Grid.RowSpan="2" />
+            <TextBox x:Name="txtTType" Grid.Row="4" Grid.Column="0" Margin="153,2,14,8" FontSize="14" FontWeight="Bold" Width="120" Height="25" />
+
+            <Label Content="Price Per Day:" Grid.Row="5" Grid.Column="0" Margin="10,1,134,-1" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" />
+            <TextBox x:Name="txtPPDay" Grid.Row="5" Grid.Column="0" Margin="153,3,14,7" FontSize="14" FontWeight="Bold" Width="120" Height="25" />
+
+            <Label Content="Maintenance History:" Grid.Row="4" Grid.Column="1" Margin="10,5,105,20" FontWeight="Bold" FontFamily="Comic Sans MS" FontSize="13" Grid.RowSpan="2" />
+            <TextBox x:Name="txtMHistory" Grid.Row="4" Grid.Column="1" Margin="154,3,12,7" FontSize="14" FontWeight="Bold" Width="120" Height="25" />
+
+            <Label Content="Insurance Details:" Grid.Row="5" Grid.Column="1" Margin="10,4,118,-4" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" />
+            <TextBox x:Name="txtIDetails" Grid.Row="5" Grid.Column="1" Margin="154,3,12,7" FontSize="14" FontWeight="Bold" Width="120" Height="25" />
+
+            <Button Content="Delete" Grid.Row="3" Grid.Column="2" Margin="11,6,152,5" Click="DeleteButton_Click" Height="25"/>
+            <Button Content="Update" Grid.Row="2" Grid.Column="2" Margin="11,6,152,5" Click="UpdateButton_Click" Height="25"/>
+            <Button Content="Add"    Grid.Row="1" Grid.Column="2" Margin="11,3,152,0"  Click="AddButton_Click"  Height="25"/>
+        </Grid>
+        <DataGrid Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+
+    </Grid>
+</UserControl>

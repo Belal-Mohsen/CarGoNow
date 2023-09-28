@@ -107,11 +107,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\UCBill.xaml.cs">
+      <DependentUpon>UCBill.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UCCar.xaml.cs">
+      <DependentUpon>UCCar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UCCustomer.xaml.cs">
       <DependentUpon>UCCustomer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UCEmployee.xaml.cs">
       <DependentUpon>UCEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UCReservation.xaml.cs">
+      <DependentUpon>UCReservation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UCSettings.xaml.cs">
+      <DependentUpon>UCSettings.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -129,11 +141,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UCBill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UCCar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UCCustomer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UCEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UCReservation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UCSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -168,41 +196,23 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <Resource Include="Resources\clients.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bg-img-car.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="bg-img.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="car2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="people.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="bill.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="reservation.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="clients.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="car.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="settings.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="logout.ico" />
+    <Resource Include="Resources\bg-img-car.jpg" />
+    <Resource Include="Resources\bg-img.png" />
+    <Resource Include="Resources\bill.ico" />
+    <Resource Include="Resources\car.ico" />
+    <Resource Include="Resources\car2.jpg" />
+    <Resource Include="Resources\gPQC6VWO.ico" />
+    <Resource Include="Resources\icons8-clients-64.png" />
+    <Resource Include="Resources\logo.png" />
+    <Resource Include="Resources\logout.ico" />
+    <Resource Include="Resources\people.ico" />
+    <Resource Include="Resources\reservation.ico" />
+    <Resource Include="Resources\settings.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

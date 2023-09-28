@@ -27,6 +27,7 @@
                 <DatePicker HorizontalAlignment="Left" Margin="350,290,0,0" VerticalAlignment="Top" Width="201" Height="44" FontFamily="Comic Sans MS" FontSize="24"/>
             </Grid>
         </Grid>
+		
         <Grid Background="#FFEEEDEF" Margin="-125,-15,845,-15">
             <Image HorizontalAlignment="Left" Height="80" Margin="5,5,0,0" VerticalAlignment="Top" Width="200" Source="/logo.png"/>
             <Button x:Name="manage_em_btn" Margin="2,94,0,433" Background="#FFEEEDEF" BorderBrush="{x:Null}" Click="manage_em_btn_Click">
