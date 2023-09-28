@@ -51,3 +51,5 @@ C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\D
 C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\CarGoNowApp.csproj.CopyComplete
 C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\CarGoNowApp.exe
 C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\CarGoNowApp.pdb
+C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\Views\UCCar.g.cs
+C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\Views\UCCar.baml
