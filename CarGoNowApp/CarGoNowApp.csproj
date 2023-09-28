@@ -107,6 +107,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\UCBill.xaml.cs">
+      <DependentUpon>UCBill.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UCCar.xaml.cs">
       <DependentUpon>UCCar.xaml</DependentUpon>
     </Compile>
@@ -115,6 +118,12 @@
     </Compile>
     <Compile Include="Views\UCEmployee.xaml.cs">
       <DependentUpon>UCEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UCReservation.xaml.cs">
+      <DependentUpon>UCReservation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UCSettings.xaml.cs">
+      <DependentUpon>UCSettings.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -132,6 +141,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UCBill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UCCar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -141,6 +154,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UCEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UCReservation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UCSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
