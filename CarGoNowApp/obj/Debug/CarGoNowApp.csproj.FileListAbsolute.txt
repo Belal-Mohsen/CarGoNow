@@ -35,6 +35,7 @@ C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\bin\D
 C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\CarGoNowApp.csproj.AssemblyReference.cache
 C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\MainWindow.g.cs
 C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\ManagerProfile.g.cs
+C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\Views\UCCar.g.cs
 C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\Views\UCCustomer.g.cs
 C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\Views\UCEmployee.g.cs
 C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\App.g.cs
@@ -42,6 +43,7 @@ C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\D
 C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\CarGoNowApp_MarkupCompile.lref
 C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\MainWindow.baml
 C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\ManagerProfile.baml
+C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\Views\UCCar.baml
 C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\Views\UCCustomer.baml
 C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\Views\UCEmployee.baml
 C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\CarGoNowApp.g.resources
@@ -51,5 +53,3 @@ C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\D
 C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\CarGoNowApp.csproj.CopyComplete
 C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\CarGoNowApp.exe
 C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\CarGoNowApp.pdb
-C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\Views\UCCar.g.cs
-C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\Views\UCCar.baml

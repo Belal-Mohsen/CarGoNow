@@ -175,41 +175,23 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <Resource Include="Resources\clients.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bg-img-car.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="bg-img.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="car2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="people.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="bill.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="reservation.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="clients.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="car.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="settings.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="logout.ico" />
+    <Resource Include="Resources\bg-img-car.jpg" />
+    <Resource Include="Resources\bg-img.png" />
+    <Resource Include="Resources\bill.ico" />
+    <Resource Include="Resources\car.ico" />
+    <Resource Include="Resources\car2.jpg" />
+    <Resource Include="Resources\gPQC6VWO.ico" />
+    <Resource Include="Resources\icons8-clients-64.png" />
+    <Resource Include="Resources\logo.png" />
+    <Resource Include="Resources\logout.ico" />
+    <Resource Include="Resources\people.ico" />
+    <Resource Include="Resources\reservation.ico" />
+    <Resource Include="Resources\settings.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
