@@ -31,6 +31,7 @@
         <Button x:Name="BtnShowAll" Grid.Column="1" Content="Show All Products" HorizontalAlignment="Left" Margin="29,229,0,0" VerticalAlignment="Top" Height="41" Width="238" FontSize="16" FontWeight="Bold" FontFamily="Arial" Click="BtnShowAll_Click"/>
         <TextBox x:Name="TBProIdSr" HorizontalAlignment="Left" Margin="455,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" FontSize="16" FontFamily="Arial" FontWeight="Bold" Height="28" Grid.Column="1"/>
         <Label Content="Product ID:" HorizontalAlignment="Left" Margin="326,25,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Arial" FontWeight="Bold" RenderTransformOrigin="-0.014,0.315" Grid.Column="1"/>
+        <Button x:Name="btnSales" Grid.Column="1" Content="Go To Sales Window" HorizontalAlignment="Left" Margin="476,250,0,0" VerticalAlignment="Top" Width="159" Height="32" FontFamily="Arial" FontSize="14" FontWeight="Bold" Click="btnSales_Click"/>
 
 
 
