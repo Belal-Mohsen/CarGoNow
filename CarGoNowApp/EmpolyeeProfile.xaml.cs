@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace CarGoNowApp
 {
     /// <summary>
-    /// Interaction logic for ManagerProfile.xaml
+    /// Interaction logic for EmpolyeeProfile.xaml
     /// </summary>
-    public partial class ManagerProfile : Window
+    public partial class EmpolyeeProfile : Window
     {
-        public ManagerProfile()
+        public EmpolyeeProfile()
         {
             InitializeComponent();
         }
@@ -55,13 +55,7 @@ namespace CarGoNowApp
 
         private void manage_car_btn_Click(object sender, RoutedEventArgs e)
         {
-            contentControl.Content = new UCCar();
-        }
-
-        private void manage_em_btn_Click(object sender, RoutedEventArgs e)
-        {
-            contentControl.Content = new UCEmployee();
-
+            contentControl.Content = new UCEmCar();
         }
 
 

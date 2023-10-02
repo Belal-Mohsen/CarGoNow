@@ -107,6 +107,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EmpolyeeProfile.xaml.cs">
+      <DependentUpon>EmpolyeeProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UCBill.xaml.cs">
       <DependentUpon>UCBill.xaml</DependentUpon>
     </Compile>
@@ -115,6 +118,9 @@
     </Compile>
     <Compile Include="Views\UCCustomer.xaml.cs">
       <DependentUpon>UCCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UCEmCar.xaml.cs">
+      <DependentUpon>UCEmCar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UCEmployee.xaml.cs">
       <DependentUpon>UCEmployee.xaml</DependentUpon>
@@ -125,6 +131,10 @@
     <Compile Include="Views\UCSettings.xaml.cs">
       <DependentUpon>UCSettings.xaml</DependentUpon>
     </Compile>
+    <Page Include="EmpolyeeProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -150,6 +160,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UCCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UCEmCar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

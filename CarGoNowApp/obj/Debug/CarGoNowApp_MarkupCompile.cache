@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\obj\Debug\
+C:\Users\belal_xgupjlq\OneDrive\Desktop\project\CarGoNow\CarGoNowApp\obj\Debug\
 CarGoNowApp
 none
 false
 DEBUG;TRACE
-C:\Users\belal_xgupjlq\OneDrive\Documents\Desktop App\CarGoNow\CarGoNowApp\App.xaml
-5-1584639967
+C:\Users\belal_xgupjlq\OneDrive\Desktop\project\CarGoNow\CarGoNowApp\App.xaml
+101083220726
 
-9872873073
-331229256004
-MainWindow.xaml;ManagerProfile.xaml;Views\UCCar.xaml;Views\UCCustomer.xaml;Views\UCEmployee.xaml;
+14174669908
+33-389731164
+EmpolyeeProfile.xaml;MainWindow.xaml;ManagerProfile.xaml;Views\UCBill.xaml;Views\UCCar.xaml;Views\UCCustomer.xaml;Views\UCEmCar.xaml;Views\UCEmployee.xaml;Views\UCReservation.xaml;Views\UCSettings.xaml;
 
 False
 

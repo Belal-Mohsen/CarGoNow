@@ -52,8 +52,15 @@ namespace CarGoNowApp
             else if (login_em_btn.IsChecked == true)
             {
 
-                // check database for log-in 
-                MessageBox.Show("Oops, your username or password is not correct");
+                // check database for log-in /////
+                isValid = checkCredentials(username, password);
+
+                if (isValid)
+                {
+                    EmpolyeeProfile empolyeeProfile = new EmpolyeeProfile();
+                    empolyeeProfile.Show();
+                    this.Close();
+                }
 
             }
             else
