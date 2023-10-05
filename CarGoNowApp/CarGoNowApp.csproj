@@ -107,6 +107,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\CarGoNowDBConnection.cs" />
     <Compile Include="EmpolyeeProfile.xaml.cs">
       <DependentUpon>EmpolyeeProfile.xaml</DependentUpon>
     </Compile>
