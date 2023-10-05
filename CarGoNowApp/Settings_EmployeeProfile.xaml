@@ -1,0 +1,75 @@
+﻿<Window x:Class="CarGoNow.Settings_EmployeeProfile"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarGoNow"
+        mc:Ignorable="d"
+        Title="Settings_EmployeeProfile" Height="600" Width="1200"
+        MinHeight="600" MinWidth="1200">
+    <Grid>
+        <Grid MaxWidth="950" MaxHeight="550">
+            <Grid Margin="105,-15,-125,-15">
+                <Grid.Background>
+                    <ImageBrush ImageSource="/car2.jpg" Opacity="0.3"/>
+                </Grid.Background>
+
+                <Grid>
+
+                    <DataGrid  Margin="0,439,0,0"/>
+                </Grid>
+                <Grid>
+                    <DataGrid x:Name="em_data"  Margin="28,37,46,146" />
+                    <Label Content="Password" HorizontalAlignment="Left" Margin="126,77,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="24"/>
+                    <TextBox HorizontalAlignment="Left" Margin="350,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" FontSize="24" FontFamily="Comic Sans MS"/>
+                    <Button Content="Change Password" HorizontalAlignment="Left" Margin="182,193,0,0" VerticalAlignment="Top" Width="331" Height="43" FontFamily="Comic Sans MS" FontSize="26"/>
+                </Grid>
+            </Grid>
+            <Grid Background="#FFEEEDEF" Margin="-125,-15,845,-15">
+                <Image HorizontalAlignment="Left" Height="80" Margin="5,5,0,0" VerticalAlignment="Top" Width="200" Source="/logo.png"/>
+                <Button x:Name="manage_em_btn" Margin="2,94,0,433" Background="#FFEEEDEF" BorderBrush="{x:Null}" Click="manage_em_btn_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/people.ico" Width="56" Height="40" Margin="0,0,5,0" />
+                        <TextBlock Text="Employess" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Width="123" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="manage_bill_btn" Margin="0,372,0,155" Background="#FFEEEDEF" BorderBrush="{x:Null}" Click="manage_bill_btn_Click" HorizontalAlignment="Right" Width="227">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/bill.ico" Width="64" Height="47" RenderTransformOrigin="0.158,0.637" />
+                        <TextBlock Text="Bills" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="127" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="manage_rs_btn" Margin="2,302,0,225" Background="#FFEEEDEF" BorderBrush="{x:Null}" Click="manage_rs_btn_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/reservation.ico" Width="59" Height="52" Margin="0,0,5,0" />
+                        <TextBlock Text="Reservations" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="121" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="manage_cu_btn" Margin="0,235,0,292" Background="#FFEEEDEF" BorderBrush="{x:Null}" Click="manage_cu_btn_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/clients (1).ico" Width="64" Height="48" Margin="0,0,5,0" />
+                        <TextBlock Text="Clients" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="110" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="manage_car_btn" Margin="0,164,0,363" Background="#FFEEEDEF" BorderBrush="{x:Null}" Click="manage_car_btn_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/car.ico" Width="61" Height="36" Margin="0,0,5,0" RenderTransformOrigin="0.08,0.498" />
+                        <TextBlock Text="Cars" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="116" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="manage_settings_btn" Margin="0,442,0,85" Background="#FFEEEDEF" BorderBrush="{x:Null}" Click="manage_settings_btn_Click" HorizontalAlignment="Right" Width="228">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/settings.ico" Width="55" Height="42" Margin="0,0,5,0" />
+                        <TextBlock Text="Settings" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="115" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="signout_btn" Margin="0,505,2,22" Background="#FFEEEDEF" BorderBrush="{x:Null}" Click="signout_btn_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/logout.ico" Width="58" Height="41" Margin="0,0,5,0" />
+                        <TextBlock Text="Sign Out" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="115" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

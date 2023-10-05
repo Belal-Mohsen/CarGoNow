@@ -36,7 +36,7 @@ namespace Assignment1
             try
             {
                 pg_connection = new NpgsqlConnection(get_ConnectionString());
-                MessageBox.Show("Connection is done");
+                //MessageBox.Show("Connection is done");
             }
             catch (NpgsqlException ex)
             {
@@ -82,107 +82,135 @@ namespace Assignment1
 
         private void BtnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            if (int.TryParse(TBProID.Text, out int value))
+            {
 
-            try
-            {
-                establishConnection();
-                pg_connection.Open();
-                string Query = "Update products set pro_name=@name, pro_amount=@amount, pro_price=@price where pro_id=@ID";
-                cmd = new NpgsqlCommand(Query, pg_connection);
-                cmd.Parameters.AddWithValue("@name", TBProNm.Text);
-                cmd.Parameters.AddWithValue("@amount", int.Parse(TBProAm.Text));
-                cmd.Parameters.AddWithValue("@price", double.Parse(TBProPrc.Text));
-                cmd.Parameters.AddWithValue("@ID", int.Parse(TBProIdSr.Text));
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Update successful");
-                pg_connection.Close();
+                try
+                {
+                    establishConnection();
+                    pg_connection.Open();
+                    string Query = "Update products set pro_name=@name, pro_amount=@amount, pro_price=@price where pro_id=@ID";
+                    cmd = new NpgsqlCommand(Query, pg_connection);
+                    cmd.Parameters.AddWithValue("@name", TBProNm.Text);
+                    cmd.Parameters.AddWithValue("@amount", int.Parse(TBProAm.Text));
+                    cmd.Parameters.AddWithValue("@price", double.Parse(TBProPrc.Text));
+                    cmd.Parameters.AddWithValue("@ID", int.Parse(TBProIdSr.Text));
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Update successful");
+                    pg_connection.Close();
+                }
+                catch (NpgsqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (NpgsqlException ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Invalid value for product ID!");
             }
 
         }
 
         private void BtnSlct_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (int.TryParse(TBProIdSr.Text, out int value))
             {
-                establishConnection();
-                pg_connection.Open();
-                string Query = "select * from products where pro_id=@id";
-                cmd = new NpgsqlCommand(Query, pg_connection);
-                cmd.Parameters.AddWithValue("@id", int.Parse(TBProIdSr.Text));
-                NpgsqlDataReader dr = cmd.ExecuteReader(); // read line or more, dataadapter is good for the multi lines
-                bool flag = false;
-                while (dr.Read())
+                try
                 {
-                    flag = true;
-                    TBProNm.Text = dr["pro_name"].ToString();
-                    TBProID.Text = dr["pro_id"].ToString();
-                    TBProAm.Text = dr["pro_amount"].ToString();
-                    TBProPrc.Text = dr["pro_price"].ToString();
-                }
-                if (!flag)
-                {
-                    TBProNm.Text = "";
-                    TBProID.Text = "";
-                    TBProAm.Text = "";
-                    TBProPrc.Text = "";
-                    MessageBox.Show("No data with this ID found!");
+                    establishConnection();
+                    pg_connection.Open();
+                    string Query = "select * from products where pro_id=@id";
+                    cmd = new NpgsqlCommand(Query, pg_connection);
+                    cmd.Parameters.AddWithValue("@id", int.Parse(TBProIdSr.Text));
+                    NpgsqlDataReader dr = cmd.ExecuteReader(); // read line or more, dataadapter is good for the multi lines
+                    bool flag = false;
+                    while (dr.Read())
+                    {
+                        flag = true;
+                        TBProNm.Text = dr["pro_name"].ToString();
+                        TBProID.Text = dr["pro_id"].ToString();
+                        TBProAm.Text = dr["pro_amount"].ToString();
+                        TBProPrc.Text = dr["pro_price"].ToString();
+                    }
+                    if (!flag)
+                    {
+                        TBProNm.Text = "";
+                        TBProID.Text = "";
+                        TBProAm.Text = "";
+                        TBProPrc.Text = "";
+                        MessageBox.Show("No data with this ID found!");
 
+                    }
+                    pg_connection.Close();
                 }
-                pg_connection.Close();
+                catch (NpgsqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (NpgsqlException ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Invalid value for search ID!");
             }
 
         }
 
         private void BtnInsrt_Click(object sender, RoutedEventArgs e)
         {
-
-            try
+            if (int.TryParse(TBProID.Text, out int value))
             {
-                establishConnection();
-                pg_connection.Open();
 
-                string Query = "insert into products  values(default, @name, @amount,@price)";
-                cmd = new NpgsqlCommand(Query, pg_connection);
-                cmd.Parameters.AddWithValue("@name", TBProNm.Text);
-                cmd.Parameters.AddWithValue("@amount", int.Parse(TBProAm.Text));
-                cmd.Parameters.AddWithValue("@price", double.Parse(TBProPrc.Text));
+                try
+                {
+                    establishConnection();
+                    pg_connection.Open();
+
+                    string Query = "insert into products  values(default, @name, @amount,@price)";
+                    cmd = new NpgsqlCommand(Query, pg_connection);
+                    cmd.Parameters.AddWithValue("@name", TBProNm.Text);
+                    cmd.Parameters.AddWithValue("@amount", int.Parse(TBProAm.Text));
+                    cmd.Parameters.AddWithValue("@price", double.Parse(TBProPrc.Text));
 
 
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Product Created Successfully!");
-                pg_connection.Close();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Product Created Successfully!");
+                    pg_connection.Close();
+                }
+                catch (NpgsqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (NpgsqlException ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Invalid value for product ID!");
             }
 
         }
 
         private void BtnDlt_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (int.TryParse(TBProID.Text, out int value))
             {
-                establishConnection();
-                pg_connection.Open();
-                string Query = "delete from products where pro_id=@ID";
-                cmd = new NpgsqlCommand(Query, pg_connection);
-                cmd.Parameters.AddWithValue("@ID", int.Parse(TBProIdSr.Text));
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Delete Successful");
-                pg_connection.Close();
+                try
+                {
+                    establishConnection();
+                    pg_connection.Open();
+                    string Query = "delete from products where pro_id=@ID";
+                    cmd = new NpgsqlCommand(Query, pg_connection);
+                    cmd.Parameters.AddWithValue("@ID", int.Parse(TBProIdSr.Text));
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Delete Successful");
+                    pg_connection.Close();
+                }
+                catch (NpgsqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (NpgsqlException ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Invalid value for product ID!");
             }
 
         }

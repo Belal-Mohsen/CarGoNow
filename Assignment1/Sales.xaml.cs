@@ -35,7 +35,7 @@ namespace Assignment1
             try
             {
                 pg_connection = new NpgsqlConnection(get_ConnectionString());
-                MessageBox.Show("Connection is done");
+                //MessageBox.Show("Connection is done");
             }
             catch (NpgsqlException ex)
             {
@@ -56,21 +56,33 @@ namespace Assignment1
 
         private void BtnChkOut_Click(object sender, RoutedEventArgs e)
         {
+            double total_price_sales = 0;
             
             foreach (Product product in cart)
             {
-                // UpdateInventory(product.Id, product.Amount);
-                MessageBox.Show("Product: " + product.Id + "  Amount: " + product.Amount);
+                total_price_sales += UpdateInventory(product.Id, product.Amount);
+                // MessageBox.Show("Product: " + product.Id + "  Amount: " + product.Amount);
             }
-
+            lbl_total.Content = "$" + total_price_sales.ToString("F");
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            cart.Add(new Product {Id = int.Parse(TBProIdSr.Text), Amount = int.Parse(TBProAm.Text) });
-            TBProAm.Text = "";
-            TBProIdSr.Text = "";
-            MessageBox.Show("Product added to the cart!");
+            if (int.TryParse(TBProIdSr.Text, out int value1) && int.TryParse(TBProAm.Text, out int value2))
+            {
+                bool isValidID = checkID();
+                if (isValidID)
+                {
+                    cart.Add(new Product { Id = int.Parse(TBProIdSr.Text), Amount = int.Parse(TBProAm.Text) });
+                    TBProAm.Text = "";
+                    TBProIdSr.Text = "";
+                    MessageBox.Show("Product added to the cart!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid value for search ID or amount !");
+            }
 
         }
 
@@ -100,7 +112,7 @@ namespace Assignment1
 
         private double UpdateInventory(int proId, int proAmount)
         {
-            int[] data;
+            object[] data;
             double total_price = 0;
             data = readDB(proId);
             try
@@ -109,11 +121,11 @@ namespace Assignment1
                 pg_connection.Open();
                 string Query = "Update products set  pro_amount=@amount where pro_id=@ID";
                 cmd = new NpgsqlCommand(Query, pg_connection);
-                cmd.Parameters.AddWithValue("@amount", (data[0] - proAmount));
+                cmd.Parameters.AddWithValue("@amount", ((int) data[0] - proAmount));
                 cmd.Parameters.AddWithValue("@ID", proId);
                 cmd.ExecuteNonQuery();
                 pg_connection.Close();
-                total_price += data[1] * proAmount;
+                total_price += (double) data[1] * proAmount;
                 return total_price;
             }
             catch (NpgsqlException ex)
@@ -123,8 +135,8 @@ namespace Assignment1
             }
         }
 
-        private int[] readDB(int id) {
-            int[] data = new int[2];
+        private object[] readDB(int id) {
+            object[] data = new object[2];
             try
             {
                 establishConnection();
@@ -137,8 +149,8 @@ namespace Assignment1
                 while (dr.Read())
                 {
                     flag = true;
-                    data[0] = (int) dr["pro_amount"];
-                    data[1] = (int)dr["pro_price"];
+                    data[0] = dr["pro_amount"];
+                    data[1] = dr["pro_price"];
                 }
                 if (!flag)
                 {
@@ -155,5 +167,37 @@ namespace Assignment1
                 return data;
             }
         }
+
+        private bool checkID()
+        {
+                try
+                {
+                    establishConnection();
+                    pg_connection.Open();
+                    string Query = "select * from products where pro_id=@id";
+                    cmd = new NpgsqlCommand(Query, pg_connection);
+                    cmd.Parameters.AddWithValue("@id", int.Parse(TBProIdSr.Text));
+                    NpgsqlDataReader dr = cmd.ExecuteReader(); // read line or more, dataadapter is good for the multi lines
+                    bool flag = false;
+                    while (dr.Read())
+                    {
+                        flag = true;
+                    }
+                    if (!flag)
+                    {
+                        MessageBox.Show("No data with this ID found!");
+
+                    }
+                     
+                    pg_connection.Close();
+                return flag;
+                }
+                catch (NpgsqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                return false;
+                }
+            }
+        }
     }
-}
+
