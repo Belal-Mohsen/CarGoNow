@@ -77,7 +77,7 @@ namespace CarGoNowApp
             string server = "localhost";
             string database = "cargonowdb";
             string uid = "root";
-            string pass = "Pass4Desk";
+            string pass = "devdiana2210";
 
             string constring = "Server=" + server + "; database=" + database + "; uid=" + uid + "; pwd=" + pass;
             using (MySqlConnection conn = new MySqlConnection(constring))
