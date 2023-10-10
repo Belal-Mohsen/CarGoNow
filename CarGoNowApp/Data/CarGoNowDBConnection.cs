@@ -14,13 +14,12 @@ namespace CarGoNowApp.Data
     {
         public static MySqlConnection conn;
         public static MySqlCommand cmd;
+
         private void establishConnection()
         {
             try
             {
-
                 conn = new MySqlConnection(get_ConnectionString());
-
             }
             catch (MySqlException ex)
             {
@@ -32,7 +31,7 @@ namespace CarGoNowApp.Data
             string server = "localhost";
             string database = "cargonowdb";
             string uid = "root";
-            string pass = "devdiana2210";
+            string pass = "Pass4Desk";
 
             string constring = "Server=" + server + "; database=" + database + "; uid=" + uid + "; pwd=" + pass;
             return constring;
@@ -45,7 +44,7 @@ namespace CarGoNowApp.Data
         // on delete
 
         //question.. do I need add a select button on employee/ car/ customer windows?
-        
+
         public DataTable showAllEmployees(string f_name, string l_name, string role, string sin)
         {
             try
@@ -386,6 +385,236 @@ namespace CarGoNowApp.Data
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        // Belal
+        public void delete(int id, string tableName)
+        {
+            establishConnection();
+            conn.Open();
+            string deleteQuery = $"DELETE FROM {tableName} WHERE id = @RowId";
+
+            using (cmd = new MySqlCommand(deleteQuery, conn))
+            {
+                cmd.Parameters.AddWithValue("@RowId", id);
+                int rowsAffected = cmd.ExecuteNonQuery();
+                conn.Close();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show($"Row with ID {id} deleted successfully from {tableName}.");
+                }
+                else
+                {
+                    MessageBox.Show($"Row with ID {id} not found in {tableName}.");
+                }
+            }
+        }
+
+        private DataTable ShowAllBills()
+        {
+            DataTable dataTable = new DataTable();
+            establishConnection();
+            conn.Open();
+
+            string selectQuery = "SELECT bill_id, payment_method, amount, payment_date, r_id, created_at FROM bill";
+            using (cmd = new MySqlCommand(selectQuery, conn))
+            {
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    adapter.Fill(dataTable);
+                }
+            }
+            return dataTable;
+        }
+
+        private void UpdateBill(int billId, string paymentMethod, decimal amount, DateTime paymentDate, int rId)
+        {
+            establishConnection();
+            conn.Open();
+
+            string updateQuery = "UPDATE bill SET payment_method = @PaymentMethod, amount = @Amount, payment_date = @PaymentDate, r_id = @RId WHERE bill_id = @BillId";
+            using (cmd = new MySqlCommand(updateQuery, conn))
+            {
+                cmd.Parameters.AddWithValue("@PaymentMethod", paymentMethod);
+                cmd.Parameters.AddWithValue("@Amount", amount);
+                cmd.Parameters.AddWithValue("@PaymentDate", paymentDate);
+                cmd.Parameters.AddWithValue("@RId", rId);
+                cmd.Parameters.AddWithValue("@BillId", billId);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show($"Bill with ID {billId} updated successfully.");
+                }
+                else
+                {
+                    MessageBox.Show($"Bill with ID {billId} not found or no changes made.");
+                }
+            }
+        }
+
+        private void InsertBill(string paymentMethod, double amount, DateTime paymentDate, int rId)
+        {
+            establishConnection();
+            conn.Open();
+
+            string insertQuery = "INSERT INTO bill (payment_method, amount, payment_date, r_id, created_at) VALUES (@PaymentMethod, @Amount, @PaymentDate, @RId)";
+            using (cmd = new MySqlCommand(insertQuery, conn))
+            {
+                cmd.Parameters.AddWithValue("@PaymentMethod", paymentMethod);
+                cmd.Parameters.AddWithValue("@Amount", amount);
+                cmd.Parameters.AddWithValue("@PaymentDate", paymentDate);
+                cmd.Parameters.AddWithValue("@RId", rId);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Bill inserted successfully.");
+                }
+                else
+                {
+                    MessageBox.Show("Bill insertion failed.");
+                }
+            }
+        }
+
+        private object[] GetBillById(int billId)
+        {
+            object[] billData = null;
+
+            establishConnection();
+            conn.Open();
+
+            string selectQuery = "SELECT bill_id, payment_method, amount, payment_date, r_id, created_at FROM bill WHERE bill_id = @BillId";
+
+            using (cmd = new MySqlCommand(selectQuery, conn))
+            {
+                cmd.Parameters.AddWithValue("@BillId", billId);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        billData = new object[]
+                        {
+                    reader.GetInt32("bill_id"),
+                    reader.GetString("payment_method"),
+                    reader.GetDecimal("amount"),
+                    reader.GetDateTime("payment_date"),
+                    reader.GetInt32("r_id"),
+                    reader.GetDateTime("created_at")
+                        };
+                    }
+                }
+            }
+            return billData;
+        }
+
+        private DataTable ShowAllRentals()
+        {
+            DataTable dataTable = new DataTable();
+            establishConnection();
+            conn.Open();
+
+            string selectQuery = "SELECT r_id, check_in, check_out, car_id, cu_id, em_id, created_at FROM rental";
+            using (MySqlCommand cmd = new MySqlCommand(selectQuery, conn))
+            {
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    adapter.Fill(dataTable);
+                }
+            }
+            return dataTable;
+        }
+
+        private void UpdateRental(int rentalId, DateTime checkIn, DateTime checkOut, int carId, int cuId, int emId)
+        {
+            establishConnection();
+            conn.Open();
+            string updateQuery = "UPDATE rental SET check_in = @CheckIn, check_out = @CheckOut, car_id = @CarId, cu_id = @CuId, em_id = @EmId WHERE r_id = @RentalId";
+
+            using (MySqlCommand cmd = new MySqlCommand(updateQuery, conn))
+            {
+                cmd.Parameters.AddWithValue("@CheckIn", checkIn);
+                cmd.Parameters.AddWithValue("@CheckOut", checkOut);
+                cmd.Parameters.AddWithValue("@CarId", carId);
+                cmd.Parameters.AddWithValue("@CuId", cuId);
+                cmd.Parameters.AddWithValue("@EmId", emId);
+                cmd.Parameters.AddWithValue("@RentalId", rentalId);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show($"Rental with ID {rentalId} updated successfully.");
+                }
+                else
+                {
+                    MessageBox.Show($"Rental with ID {rentalId} not found or no changes made.");
+                }
+            }
+        }
+
+        private void InsertRental(DateTime checkIn, DateTime checkOut, int carId, int cuId, int emId)
+        {
+            establishConnection();
+            conn.Open();
+
+            string insertQuery = "INSERT INTO rental (check_in, check_out, car_id, cu_id, em_id) VALUES (@CheckIn, @CheckOut, @CarId, @CuId, @EmId)";
+
+            using (MySqlCommand cmd = new MySqlCommand(insertQuery, conn))
+            {
+                cmd.Parameters.AddWithValue("@CheckIn", checkIn);
+                cmd.Parameters.AddWithValue("@CheckOut", checkOut);
+                cmd.Parameters.AddWithValue("@CarId", carId);
+                cmd.Parameters.AddWithValue("@CuId", cuId);
+                cmd.Parameters.AddWithValue("@EmId", emId);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Rental inserted successfully.");
+                }
+                else
+                {
+                    MessageBox.Show("Rental insertion failed.");
+                }
+            }
+        }
+
+        private object[] GetRentalById(int rentalId)
+        {
+            object[] rentalData = null;
+            establishConnection();
+            conn.Open();
+
+            string selectQuery = "SELECT r_id, check_in, check_out, car_id, cu_id, em_id, created_at FROM rental WHERE r_id = @RentalId";
+
+            using (MySqlCommand cmd = new MySqlCommand(selectQuery, conn))
+            {
+                cmd.Parameters.AddWithValue("@RentalId", rentalId);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        rentalData = new object[]
+                        {
+                    reader.GetInt32("r_id"),
+                    reader.GetDateTime("check_in"),
+                    reader.GetDateTime("check_out"),
+                    reader.GetInt32("car_id"),
+                    reader.GetInt32("cu_id"),
+                    reader.GetInt32("em_id"),
+                    reader.GetDateTime("created_at")
+                        };
+                    }
+                }
+            }
+            return rentalData;
         }
     }
 }
