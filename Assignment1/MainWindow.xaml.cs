@@ -157,6 +157,9 @@ namespace Assignment1
 
         private void BtnInsrt_Click(object sender, RoutedEventArgs e)
         {
+            if (int.TryParse(TBProAm.Text, out int value) && double.TryParse(TBProPrc.Text, out double value2) && TBProNm.Text != "")
+            {
+
                 try
                 {
                     establishConnection();
@@ -177,6 +180,11 @@ namespace Assignment1
                 {
                     MessageBox.Show(ex.Message);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Invalid data, please make sure you enter valid values!");
+            }
         }
 
         private void BtnDlt_Click(object sender, RoutedEventArgs e)
@@ -201,7 +209,7 @@ namespace Assignment1
             }
             else
             {
-                MessageBox.Show("Invalid value for product ID!");
+                MessageBox.Show("Invalid value for product ID, please select the product before deleting it!");
             }
 
         }
