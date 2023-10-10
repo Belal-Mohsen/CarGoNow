@@ -57,13 +57,20 @@ namespace Assignment1
         private void BtnChkOut_Click(object sender, RoutedEventArgs e)
         {
             double total_price_sales = 0;
-            
-            foreach (Product product in cart)
+            if (cart.Count == 0)
             {
-                total_price_sales += UpdateInventory(product.Id, product.Amount);
-                // MessageBox.Show("Product: " + product.Id + "  Amount: " + product.Amount);
+                MessageBox.Show("Your cart is empty!");
             }
-            lbl_total.Content = "$" + total_price_sales.ToString("F");
+            else
+            {
+                foreach (Product product in cart)
+                {
+                    total_price_sales += UpdateInventory(product.Id, product.Amount);
+                    // MessageBox.Show("Product: " + product.Id + "  Amount: " + product.Amount);
+                }
+                lbl_total.Content = "$" + total_price_sales.ToString("F");
+                cart.Clear();
+            }
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
