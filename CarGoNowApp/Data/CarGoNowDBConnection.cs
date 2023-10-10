@@ -410,7 +410,7 @@ namespace CarGoNowApp.Data
             }
         }
 
-        private DataTable ShowAllBills()
+        public DataTable ShowAllBills()
         {
             DataTable dataTable = new DataTable();
             establishConnection();
@@ -427,7 +427,7 @@ namespace CarGoNowApp.Data
             return dataTable;
         }
 
-        private void UpdateBill(int billId, string paymentMethod, decimal amount, DateTime paymentDate, int rId)
+        public void UpdateBill(int billId, string paymentMethod, decimal amount, DateTime paymentDate, int rId)
         {
             establishConnection();
             conn.Open();
@@ -454,7 +454,7 @@ namespace CarGoNowApp.Data
             }
         }
 
-        private void InsertBill(string paymentMethod, double amount, DateTime paymentDate, int rId)
+        public void InsertBill(string paymentMethod, double amount, DateTime paymentDate, int rId)
         {
             establishConnection();
             conn.Open();
@@ -480,7 +480,7 @@ namespace CarGoNowApp.Data
             }
         }
 
-        private object[] GetBillById(int billId)
+        public object[] GetBillById(int billId)
         {
             object[] billData = null;
 
@@ -512,7 +512,7 @@ namespace CarGoNowApp.Data
             return billData;
         }
 
-        private DataTable ShowAllRentals()
+        public DataTable ShowAllRentals()
         {
             DataTable dataTable = new DataTable();
             establishConnection();
@@ -529,7 +529,7 @@ namespace CarGoNowApp.Data
             return dataTable;
         }
 
-        private void UpdateRental(int rentalId, DateTime checkIn, DateTime checkOut, int carId, int cuId, int emId)
+        public void UpdateRental(int rentalId, DateTime checkIn, DateTime checkOut, int carId, int cuId, int emId)
         {
             establishConnection();
             conn.Open();
@@ -557,7 +557,7 @@ namespace CarGoNowApp.Data
             }
         }
 
-        private void InsertRental(DateTime checkIn, DateTime checkOut, int carId, int cuId, int emId)
+        public void InsertRental(DateTime checkIn, DateTime checkOut, int carId, int cuId, int emId)
         {
             establishConnection();
             conn.Open();
@@ -585,7 +585,7 @@ namespace CarGoNowApp.Data
             }
         }
 
-        private object[] GetRentalById(int rentalId)
+        public object[] GetRentalById(int rentalId)
         {
             object[] rentalData = null;
             establishConnection();
@@ -615,6 +615,37 @@ namespace CarGoNowApp.Data
                 }
             }
             return rentalData;
+        }
+        public bool login_c(string username, string password)
+        {
+            bool isCredentialsValid = false;
+            establishConnection();
+            conn.Open();
+
+            string query = "SELECT * FROM Login WHERE user_name = @username";
+            cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@username", username);
+
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    string storedPasswordHash = reader["password"].ToString();
+                    if (password == storedPasswordHash)
+                    {
+                        isCredentialsValid = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid password.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("User not found.");
+                } 
+            }
+            return isCredentialsValid;
         }
     }
 }
