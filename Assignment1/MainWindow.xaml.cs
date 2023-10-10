@@ -157,9 +157,6 @@ namespace Assignment1
 
         private void BtnInsrt_Click(object sender, RoutedEventArgs e)
         {
-            if (int.TryParse(TBProID.Text, out int value))
-            {
-
                 try
                 {
                     establishConnection();
@@ -180,12 +177,6 @@ namespace Assignment1
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Invalid value for product ID!");
-            }
-
         }
 
         private void BtnDlt_Click(object sender, RoutedEventArgs e)
