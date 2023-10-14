@@ -61,7 +61,7 @@
             <Button Content="Update" Grid.Row="2" Grid.Column="2" Margin="11,6,152,5" Click="UpdateButton_Click" Height="25"/>
             <Button Content="Add"    Grid.Row="1" Grid.Column="2" Margin="11,3,152,0"  Click="AddButton_Click"  Height="25"/>
         </Grid>
-        <DataGrid Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <DataGrid x:Name="dataGrid" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"/>
 
     </Grid>
 </UserControl>

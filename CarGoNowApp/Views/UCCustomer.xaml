@@ -45,13 +45,13 @@
             <TextBox x:Name="txtDLicense" Grid.Row="3" Grid.Column="1" Margin="121,10,53,10" FontSize="14" FontWeight="Bold" />
 
             <Label Content="Expiry Date:" Grid.Row="4" Grid.Column="0" Margin="10,0,150,0" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" />
-            <TextBox x:Name="txtDLicenseED" Grid.Row="4" Grid.Column="0" Margin="129,9,44,11" FontSize="14" FontWeight="Bold" />
+            <DatePicker x:Name="pickerDLicenseED" Grid.Row="4" Grid.Column="0" Margin="129,9,44,11" FontSize="14" FontWeight="Bold" />
 
             <Button Content="Delete" Grid.Row="3" Grid.Column="2" Margin="11,6,152,5" Click="DeleteButton_Click" Height="25"/>
             <Button Content="Update" Grid.Row="2" Grid.Column="2" Margin="11,6,152,5" Click="UpdateButton_Click" Height="25"/>
             <Button Content="Add"    Grid.Row="1" Grid.Column="2" Margin="11,3,152,0"  Click="AddButton_Click"  Height="25"/>
         </Grid>
-        <DataGrid Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <DataGrid x:Name="dataGrid" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"/>
 
     </Grid>
 </UserControl>

@@ -32,7 +32,7 @@ namespace CarGoNowApp.Data
             string server = "localhost";
             string database = "cargonowdb";
             string uid = "root";
-            string pass = "Pass4Desk";
+            string pass = "devdiana2210";
 
             string constring = "Server=" + server + "; database=" + database + "; uid=" + uid + "; pwd=" + pass;
             return constring;
@@ -46,10 +46,11 @@ namespace CarGoNowApp.Data
 
         //question.. do I need add a select button on employee/ car/ customer windows?
 
-        public DataTable showAllEmployees(string f_name, string l_name, string role, string sin)
+        public DataTable showAllEmployees()
         {
             try
             {
+                DataTable dataTable = new DataTable();
                 establishConnection();
                 conn.Open();
                 string Query = "select * from employee";
@@ -152,11 +153,11 @@ namespace CarGoNowApp.Data
                 MessageBox.Show(ex.Message);
             }
         }
-        public DataTable showAllCar(string model, int availability, int year, string color, string license_plate, 
-            string transmission_type, string maintenance_history, string insurance_details, double price_per_day)
+        public DataTable showAllCar()
         {
             try
             {
+                DataTable dataTable = new DataTable();
                 establishConnection();
                 conn.Open();
                 string Query = "select * from car";
@@ -272,11 +273,12 @@ namespace CarGoNowApp.Data
                 MessageBox.Show(ex.Message);
             }
         }
-        public DataTable showAllCustomer(string f_name, string l_name, string phone_number, string email, 
-            string driving_license, DateTime dl_expiry_date)
-        {
+        public DataTable showAllCustomer() { 
+            
+        
             try
-            {
+            {   
+                DataTable dataTable = new DataTable();
                 establishConnection();
                 conn.Open();
                 string Query = "select * from customer";
@@ -297,6 +299,8 @@ namespace CarGoNowApp.Data
                 return null;
             }
         }
+
+      
         public void AddCustomer(string f_name, string l_name, string phone_number, string email,
             string driving_license, DateTime dl_expiry_date)
         {
