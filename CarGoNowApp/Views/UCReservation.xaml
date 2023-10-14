@@ -8,14 +8,15 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="191*"/>
-            <RowDefinition Height="389*"/>
+            <RowDefinition Height="34*"/>
+            <RowDefinition Height="41*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -24,28 +25,30 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Content="Check-in:" Grid.Row="1" Grid.Column="0" Margin="10,10,171,0" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" />
-            <DatePicker x:Name="pickerCheckin" Grid.Row="1" Grid.Column="0" Margin="129,10,21,0" RenderTransformOrigin="0.5,0.5" FontSize="14" FontWeight="Bold" />
+            <Label Content="Check-in:" Grid.Row="2" Grid.Column="0" Margin="14,2,167,8" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" />
+            <DatePicker x:Name="pickerCheckin" Grid.Row="2" Grid.Column="0" Margin="133,2,17,8" RenderTransformOrigin="0.5,0.5" FontSize="14" FontWeight="Bold" />
 
 
-            <Label Content="Check-out:" Grid.Row="1" Grid.Column="1" Margin="10,10,162,30" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" Grid.RowSpan="2" />
-            <DatePicker x:Name="pickerCheckout" Grid.Row="1" Grid.Column="1" Margin="109,10,40,0" FontSize="14" FontWeight="Bold" />
+            <Label Content="Check-out:" Grid.Row="2" Grid.Column="1" Margin="10,5,162,35" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" Grid.RowSpan="2" />
+            <DatePicker x:Name="pickerCheckout" Grid.Row="2" Grid.Column="1" Margin="116,5,33,5" FontSize="14" FontWeight="Bold" />
 
-            <Label Content="Car ID:" Grid.Row="2" Grid.Column="0" Margin="10,10,161,0" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" />
-            <TextBox x:Name="txtCarId" Grid.Row="2" Grid.Column="0" Margin="129,10,32,10" FontSize="14" FontWeight="Bold" />
+            <Label Content="Car ID:" Grid.Row="3" Grid.Column="0" Margin="14,8,157,2" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" />
+            <TextBox x:Name="txtCarId" Grid.Row="3" Grid.Column="0" Margin="133,8,17,12" FontSize="14" FontWeight="Bold" />
 
-            <Label Content="Customer ID:" Grid.Row="3" Grid.Column="0" Margin="10,4,124,6" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" RenderTransformOrigin="0.379,1.274" />
-            <TextBox x:Name="txtCustomerId" Grid.Row="3" Grid.Column="0" Margin="129,10,32,10" FontSize="14" FontWeight="Bold" />
+            <Label Content="Customer ID:" Grid.Row="4" Grid.Column="0" Margin="14,4,120,6" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" RenderTransformOrigin="0.379,1.274" />
+            <TextBox x:Name="txtCustomerId" Grid.Row="4" Grid.Column="0" Margin="133,10,17,10" FontSize="14" FontWeight="Bold" />
 
-            <Label Content="Employee ID:" Grid.Row="2" Grid.Column="1" Margin="10,4,148,8" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" />
-            <TextBox x:Name="txtEmployeeId" Grid.Row="2" Grid.Column="1" Margin="118,10,40,10" FontSize="14" FontWeight="Bold" />
+            <Label Content="Employee ID:" Grid.Row="3" Grid.Column="1" Margin="10,7,148,5" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" />
+            <TextBox x:Name="txtEmployeeId" Grid.Row="3" Grid.Column="1" Margin="116,13,33,7" FontSize="14" FontWeight="Bold" IsEnabled="False" />
 
-            <Button Content="Update Reservation" Grid.Row="1" Grid.Column="2" Margin="11,9,133,11" />
-            <Button Content="Delete Reservation" Grid.Row="2" Grid.Column="2" Margin="11,8,133,12" />
-            <Button Content="Make Reservation / Generate Bill" Grid.Row="3" Grid.Column="2" Margin="11,8,41,12"/>
+            <Button x:Name="btnUpdate" Content="Update Reservation" Grid.Row="1" Grid.Column="2" Margin="11,4,41,6" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" Click="btnUpdate_Click"/>
+            <Button x:Name="btnDlt" Content="Delete Reservation" Grid.Row="2" Grid.Column="2" Margin="11,5,41,0" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" Click="btnDlt_Click" />
+            <Button x:Name="btnMakeRes" Content="Make Reservation / Generate Bill" Grid.Row="3" Grid.Column="2" Margin="11,5,41,0" FontWeight="Bold" FontFamily="Comic Sans MS" Click="btnMakeRes_Click"/>
+            <Label Content="Rental ID:" Grid.Row="1" Grid.Column="0" Margin="14,4,167,6" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" />
+            <TextBox x:Name="txtRentalID" Grid.Row="1" Grid.Column="0" Margin="133,10,17,10" FontSize="14" FontWeight="Bold" IsEnabled="False" />
         </Grid>
 
-        <DataGrid Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <DataGrid x:Name="dataGrid" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,43,0,0" SelectionChanged="dataGrid_SelectionChanged"/>
 
     </Grid>
 </UserControl>

@@ -7,7 +7,7 @@ CREATE TABLE `Login`(
     `user_name` TEXT NOT NULL,
     `password` TEXT NOT NULL,
     `em_id` BIGINT NOT NULL,
-    `created_at` DATETIME NOT NULL
+    `created_at` DATETIME NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE IF NOT EXISTS `Customer`(
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `Customer`(
     `email` TEXT NOT NULL,
     `driving_license` TEXT NOT NULL,
     `dl_expiry_date` DATE NOT NULL,
-    `created_at` DATETIME NOT NULL
+    `created_at` DATETIME NOT NULL DEFAULT NOW()
 );
 CREATE TABLE IF NOT EXISTS `Employee`(
     `em_id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `Employee`(
     `l_name` TEXT NOT NULL,
     `role` TEXT NOT NULL,
     `sin` TEXT NOT NULL,
-    `created_at` DATETIME NOT NULL
+    `created_at` DATETIME NOT NULL DEFAULT NOW()
 );
 CREATE TABLE IF NOT EXISTS `Bill`(
     `bill_id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `Bill`(
     `amount` DOUBLE(8, 2) NOT NULL,
     `payment_date` DATETIME NOT NULL,
     `r_id` BIGINT NOT NULL,
-    `created_at` DATETIME NOT NULL
+    `created_at` DATETIME NOT NULL DEFAULT NOW()
 );
 CREATE TABLE IF NOT EXISTS `Car`(
     `car_id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `Car`(
     `maintenance_history` TEXT NOT NULL,
     `insurance_details` TEXT NOT NULL,
     `price_per_day` DOUBLE(8, 2) NOT NULL,
-    `created_at` DATETIME NOT NULL
+    `created_at` DATETIME NOT NULL DEFAULT NOW()
 );
 CREATE TABLE IF NOT EXISTS `Rental`(
     `r_id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `Rental`(
     `car_id` BIGINT NOT NULL,
     `cu_id` BIGINT NOT NULL,
     `em_id` BIGINT NOT NULL,
-    `created_at` DATETIME NOT NULL
+    `created_at` DATETIME NOT NULL DEFAULT NOW()
 );
 ALTER TABLE
     `Rental` ADD CONSTRAINT `rental_em_id_foreign` FOREIGN KEY(`em_id`) REFERENCES `Employee`(`em_id`);

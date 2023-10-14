@@ -13,5 +13,6 @@ namespace CarGoNowApp
     /// </summary>
     public partial class App : Application
     {
+        public static int UserID { get; set; }
     }
 }

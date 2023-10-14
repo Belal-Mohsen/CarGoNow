@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Bcpg;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -388,11 +389,11 @@ namespace CarGoNowApp.Data
         }
 
         // Belal
-        public void delete(int id, string tableName)
+        public void delete(int id,string tableId, string tableName)
         {
             establishConnection();
             conn.Open();
-            string deleteQuery = $"DELETE FROM {tableName} WHERE id = @RowId";
+            string deleteQuery = $"DELETE FROM {tableName} WHERE {tableId} = @RowId";
 
             using (cmd = new MySqlCommand(deleteQuery, conn))
             {
@@ -427,7 +428,7 @@ namespace CarGoNowApp.Data
             return dataTable;
         }
 
-        public void UpdateBill(int billId, string paymentMethod, decimal amount, DateTime paymentDate, int rId)
+        public void UpdateBill(int billId, string paymentMethod, double amount, DateTime paymentDate, int rId)
         {
             establishConnection();
             conn.Open();
@@ -459,7 +460,7 @@ namespace CarGoNowApp.Data
             establishConnection();
             conn.Open();
 
-            string insertQuery = "INSERT INTO bill (payment_method, amount, payment_date, r_id, created_at) VALUES (@PaymentMethod, @Amount, @PaymentDate, @RId)";
+            string insertQuery = "INSERT INTO bill (payment_method, amount, payment_date, r_id) VALUES (@PaymentMethod, @Amount, @PaymentDate, @RId)";
             using (cmd = new MySqlCommand(insertQuery, conn))
             {
                 cmd.Parameters.AddWithValue("@PaymentMethod", paymentMethod);
@@ -634,6 +635,7 @@ namespace CarGoNowApp.Data
                     if (password == storedPasswordHash)
                     {
                         isCredentialsValid = true;
+                        App.UserID = Convert.ToInt32(reader["l_id"]);
                     }
                     else
                     {
@@ -647,5 +649,55 @@ namespace CarGoNowApp.Data
             }
             return isCredentialsValid;
         }
+
+        public void UpdateLogin(int loginId, string newUsername, string newPassword)
+        {
+
+
+            establishConnection();
+            conn.Open();
+
+            string query = "UPDATE Login SET user_name = @user_name, password = @password WHERE l_id = @l_id";
+            cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@l_id", loginId);
+            cmd.Parameters.AddWithValue("@user_name", newUsername);
+            cmd.Parameters.AddWithValue("@password", newPassword);
+
+            int rowsAffected = cmd.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                MessageBox.Show("Your credentials updated successfully.");
+            }
+            else
+            {
+                MessageBox.Show("Failed to update your credentials, please try again!");
+            }
+        }
+        public object[] SelectLoginById(int loginId)
+        {
+            object[] userData = null;
+            establishConnection();
+            conn.Open();
+
+            string query = "SELECT user_name, password FROM Login WHERE l_id = @l_id";
+            cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@l_id", loginId);
+
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    userData = new object[]
+                        {
+                    reader.GetString("user_name"),
+                    reader.GetString("password"),
+                        };
+                }
+            }
+
+            return userData;
+        }
+
+
     }
 }

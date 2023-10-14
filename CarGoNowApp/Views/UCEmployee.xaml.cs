@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CarGoNowApp.Data;
 
 namespace CarGoNowApp.Views
 {
@@ -24,6 +25,8 @@ namespace CarGoNowApp.Views
         {
             InitializeComponent();
         }
+
+        CarGoNowDBConnection dbConnection = new CarGoNowDBConnection();
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
 
