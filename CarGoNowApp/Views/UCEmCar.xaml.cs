@@ -26,7 +26,7 @@ namespace CarGoNowApp.Views
 
         private void showData()
         {
-            DataTable data = dbConnection.showAllCar();
+            DataTable data = dbConnection.showAllAvailableCar();
             dataGrid.ItemsSource = data.DefaultView;
         }
         public UCEmCar()

@@ -192,6 +192,32 @@ namespace CarGoNowApp.Data
                 return null;
             }
         }
+
+        public DataTable showAllAvailableCar()
+        {
+            try
+            {
+                DataTable dataTable = new DataTable();
+                establishConnection();
+                conn.Open();
+                string Query = "select * from car where availability = 1";
+                cmd = new MySqlCommand(Query, conn);
+
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+
+                dataAdapter.Fill(dt);
+                //dataGrid.ItemsSource = dt.AsDataView();
+                //DataContext = dataAdapter;
+                conn.Close();
+                return dt;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
         public void AddCar(string model, int availability, int year, string color, string license_plate,
             string transmission_type, string maintenance_history, string insurance_details, double price_per_day)
         {
