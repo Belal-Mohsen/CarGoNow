@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CarGoNowApp.Data;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +22,17 @@ namespace CarGoNowApp.Views
     /// </summary>
     public partial class UCEmCar : UserControl
     {
+        CarGoNowDBConnection dbConnection = new CarGoNowDBConnection();
+
+        private void showData()
+        {
+            DataTable data = dbConnection.showAllCar();
+            dataGrid.ItemsSource = data.DefaultView;
+        }
         public UCEmCar()
         {
             InitializeComponent();
+            showData();
         }
     }
 }
