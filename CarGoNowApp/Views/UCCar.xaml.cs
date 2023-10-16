@@ -37,11 +37,11 @@ namespace CarGoNowApp.Views
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtModel.Text) && int.TryParse(txtAvailability.Text, out int inValue) &&
-                string.IsNullOrWhiteSpace(txtTType.Text) && double.TryParse(txtPPDay.Text, out double value) &&
-                int.TryParse(txtYear.Text, out int result) && string.IsNullOrWhiteSpace(txtColor.Text) &&
-                string.IsNullOrWhiteSpace(txtLPlate.Text) && string.IsNullOrWhiteSpace(txtMHistory.Text) &&
-                string.IsNullOrWhiteSpace(txtIDetails.Text))
+            if (!string.IsNullOrWhiteSpace(txtModel.Text) && int.TryParse(txtAvailability.Text, out int inValue) &&
+                !string.IsNullOrWhiteSpace(txtTType.Text) && double.TryParse(txtPPDay.Text, out double value) &&
+                int.TryParse(txtYear.Text, out int result) && !string.IsNullOrWhiteSpace(txtColor.Text) &&
+                !string.IsNullOrWhiteSpace(txtLPlate.Text) && !string.IsNullOrWhiteSpace(txtMHistory.Text) &&
+                !string.IsNullOrWhiteSpace(txtIDetails.Text))
 
             {
                 dbConnection.AddCar(txtModel.Text, int.Parse(txtAvailability.Text), int.Parse(txtYear.Text), txtColor.Text,
@@ -57,14 +57,14 @@ namespace CarGoNowApp.Views
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtModel.Text) && int.TryParse(txtAvailability.Text, out int inValue) &&
-                string.IsNullOrWhiteSpace(txtTType.Text) && double.TryParse(txtPPDay.Text, out double value) &&
-                int.TryParse(txtYear.Text, out int result) && string.IsNullOrWhiteSpace(txtColor.Text) &&
-                string.IsNullOrWhiteSpace(txtLPlate.Text) && string.IsNullOrWhiteSpace(txtMHistory.Text) &&
-                string.IsNullOrWhiteSpace(txtIDetails.Text))
+            if (int.TryParse(txtCarID.Text, out int value) && !string.IsNullOrWhiteSpace(txtModel.Text) && int.TryParse(txtAvailability.Text, out int inValue) &&
+                !string.IsNullOrWhiteSpace(txtTType.Text) && double.TryParse(txtPPDay.Text, out double xvalue) &&
+                int.TryParse(txtYear.Text, out int result) && !string.IsNullOrWhiteSpace(txtColor.Text) &&
+                !string.IsNullOrWhiteSpace(txtLPlate.Text) && !string.IsNullOrWhiteSpace(txtMHistory.Text) &&
+                !string.IsNullOrWhiteSpace(txtIDetails.Text))
 
             {
-                dbConnection.AddCar(txtModel.Text, int.Parse(txtAvailability.Text), int.Parse(txtYear.Text), txtColor.Text,
+                dbConnection.UpdateCar(int.Parse(txtCarID.Text), txtModel.Text, int.Parse(txtAvailability.Text), int.Parse(txtYear.Text), txtColor.Text,
                      txtLPlate.Text, txtTType.Text, txtMHistory.Text, txtIDetails.Text, double.Parse(txtPPDay.Text));
                 showData();
             }
@@ -94,13 +94,13 @@ namespace CarGoNowApp.Views
                 txtCarID.Text = selectedRow["car_id"].ToString();
                 txtModel.Text = selectedRow["model"].ToString();
                 txtAvailability.Text = selectedRow["availability"].ToString();
-                txtTType.Text = selectedRow["t_type"].ToString();
-                txtPPDay.Text = selectedRow["p_p_day"].ToString();
+                txtTType.Text = selectedRow["transmission_type"].ToString();
+                txtPPDay.Text = selectedRow["price_per_day"].ToString();
                 txtYear.Text = selectedRow["year"].ToString();
                 txtColor.Text = selectedRow["color"].ToString();
-                txtLPlate.Text = selectedRow["l_plate"].ToString();
-                txtMHistory.Text = selectedRow["m_history"].ToString();
-                txtIDetails.Text = selectedRow["i_details"].ToString();
+                txtLPlate.Text = selectedRow["license_plate"].ToString();
+                txtMHistory.Text = selectedRow["maintenance_history"].ToString();
+                txtIDetails.Text = selectedRow["insurance_details"].ToString();
 
 
 
@@ -112,6 +112,7 @@ namespace CarGoNowApp.Views
             }
 
         }
+
 
     }
 }

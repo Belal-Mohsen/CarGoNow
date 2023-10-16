@@ -34,12 +34,12 @@ namespace CarGoNowApp.Views
             showData();
         }
 
-       
+
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (int.TryParse(txtEmployeeID.Text, out int value))
             {
-                dbConnection.delete(int.Parse(txtEmployeeID.Text), "employee_id", "Employee");
+                dbConnection.delete(int.Parse(txtEmployeeID.Text), "em_id", "Employee");
                 showData();
             }
             else
@@ -51,11 +51,11 @@ namespace CarGoNowApp.Views
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtFirstName.Text) && !txtFirstName.Text.Contains(" ") &&
-                    string.IsNullOrWhiteSpace(txtLastName.Text) && !txtLastName.Text.Contains(" ") &&
-                    string.IsNullOrWhiteSpace(txtRole.Text) && string.IsNullOrWhiteSpace(txtSIN.Text))
+            if (int.TryParse(txtEmployeeID.Text, out int value) && !string.IsNullOrWhiteSpace(txtFirstName.Text) &&
+                    !string.IsNullOrWhiteSpace(txtLastName.Text) &&
+                    !string.IsNullOrWhiteSpace(txtRole.Text) && !string.IsNullOrWhiteSpace(txtSIN.Text))
             {
-                dbConnection.UpdateEmployee(txtFirstName.Text, txtLastName.Text, txtRole.Text, txtSIN.Text);
+                dbConnection.UpdateEmployee(int.Parse(txtEmployeeID.Text), txtFirstName.Text, txtLastName.Text, txtRole.Text, txtSIN.Text);
                 showData();
             }
             else
@@ -63,13 +63,13 @@ namespace CarGoNowApp.Views
                 MessageBox.Show("Invalid Values for the Employee!");
             }
         }
-      
+
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtFirstName.Text) && !txtFirstName.Text.Contains(" ") && 
-                    string.IsNullOrWhiteSpace(txtLastName.Text) && !txtLastName.Text.Contains(" ") && 
-                    string.IsNullOrWhiteSpace(txtRole.Text) && string.IsNullOrWhiteSpace(txtSIN.Text))
+            if (!string.IsNullOrWhiteSpace(txtFirstName.Text) &&
+                    !string.IsNullOrWhiteSpace(txtLastName.Text) &&
+                    !string.IsNullOrWhiteSpace(txtRole.Text) && !string.IsNullOrWhiteSpace(txtSIN.Text))
             {
                 dbConnection.AddEmployee(txtFirstName.Text, txtLastName.Text, txtRole.Text, txtSIN.Text);
                 showData();
@@ -79,13 +79,13 @@ namespace CarGoNowApp.Views
                 MessageBox.Show("Invalid Values for the Employee!");
             }
         }
-        
+
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dataGrid.SelectedItem != null)
             {
                 DataRowView selectedRow = (DataRowView)dataGrid.SelectedItem;
-                txtEmployeeID.Text = selectedRow["employee_id"].ToString();
+                txtEmployeeID.Text = selectedRow["em_id"].ToString();
                 txtFirstName.Text = selectedRow["f_name"].ToString();
                 txtLastName.Text = selectedRow["l_name"].ToString();
                 txtRole.Text = selectedRow["role"].ToString();

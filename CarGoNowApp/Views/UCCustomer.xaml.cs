@@ -35,12 +35,12 @@ namespace CarGoNowApp.Views
         }
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtFirstName.Text) && string.IsNullOrWhiteSpace(txtLastName.Text) &&
-                string.IsNullOrWhiteSpace(txtPhone.Text) && string.IsNullOrWhiteSpace(txtEmail.Text) &&
-                string.IsNullOrWhiteSpace(txtDLicense.Text) && pickerDLicenseED.SelectedDate.HasValue)
+            if (int.TryParse(txtCustomerID.Text, out int value) && !string.IsNullOrWhiteSpace(txtFirstName.Text) && !string.IsNullOrWhiteSpace(txtLastName.Text) &&
+                !string.IsNullOrWhiteSpace(txtPhone.Text) && !string.IsNullOrWhiteSpace(txtEmail.Text) &&
+                !string.IsNullOrWhiteSpace(txtDLicense.Text) && pickerDLicenseED.SelectedDate.HasValue)
 
             {
-                dbConnection.UpdateCustomer(txtFirstName.Text, txtLastName.Text, txtPhone.Text, txtEmail.Text,
+                dbConnection.UpdateCustomer(int.Parse(txtCustomerID.Text), txtFirstName.Text, txtLastName.Text, txtPhone.Text, txtEmail.Text,
                 txtDLicense.Text, pickerDLicenseED.SelectedDate.Value);
                 showData();
             }
@@ -53,9 +53,9 @@ namespace CarGoNowApp.Views
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtFirstName.Text) && string.IsNullOrWhiteSpace(txtLastName.Text) &&
-                string.IsNullOrWhiteSpace(txtPhone.Text) && string.IsNullOrWhiteSpace(txtEmail.Text) &&
-                string.IsNullOrWhiteSpace(txtDLicense.Text) && pickerDLicenseED.SelectedDate.HasValue)
+            if (!string.IsNullOrWhiteSpace(txtFirstName.Text) && !string.IsNullOrWhiteSpace(txtLastName.Text) &&
+                !string.IsNullOrWhiteSpace(txtPhone.Text) && !string.IsNullOrWhiteSpace(txtEmail.Text) &&
+                !string.IsNullOrWhiteSpace(txtDLicense.Text) && pickerDLicenseED.SelectedDate.HasValue)
             {
                 dbConnection.AddCustomer(txtFirstName.Text, txtLastName.Text, txtPhone.Text, txtEmail.Text,
                 txtDLicense.Text, pickerDLicenseED.SelectedDate.Value);
@@ -72,7 +72,7 @@ namespace CarGoNowApp.Views
         {
             if (int.TryParse(txtCustomerID.Text, out int value))
             {
-                dbConnection.delete(int.Parse(txtCustomerID.Text), "customer_id", "Customer");
+                dbConnection.delete(int.Parse(txtCustomerID.Text), "cu_id", "Customer");
                 showData();
             }
             else
@@ -85,13 +85,13 @@ namespace CarGoNowApp.Views
             if (dataGrid.SelectedItem != null)
             {
                 DataRowView selectedRow = (DataRowView)dataGrid.SelectedItem;
-                txtCustomerID.Text = selectedRow["customer_id"].ToString();
+                txtCustomerID.Text = selectedRow["cu_id"].ToString();
                 txtFirstName.Text = selectedRow["f_name"].ToString();
                 txtLastName.Text = selectedRow["l_name"].ToString();
-                txtPhone.Text = selectedRow["phone"].ToString();
+                txtPhone.Text = selectedRow["phone_number"].ToString();
                 txtEmail.Text = selectedRow["email"].ToString();
-                txtDLicense.Text = selectedRow["d_license"].ToString();
-                pickerDLicenseED.SelectedDate = selectedRow["exp_d_license"] as DateTime?;
+                txtDLicense.Text = selectedRow["driving_license"].ToString();
+                pickerDLicenseED.SelectedDate = selectedRow["dl_expiry_date"] as DateTime?;
 
             }
             else
@@ -101,6 +101,8 @@ namespace CarGoNowApp.Views
             }
 
         }
+
+
     }
 }
 

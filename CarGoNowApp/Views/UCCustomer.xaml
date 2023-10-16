@@ -26,7 +26,7 @@
             </Grid.ColumnDefinitions>
 
             <Label Content="Customer ID:" Grid.Row="1" Grid.Column="0" Margin="10,10,213,10" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" />
-            <TextBox x:Name="txtCustomerID" Grid.Row="1" Grid.Column="0" Margin="129,10,44,10" RenderTransformOrigin="0.5,0.5" FontSize="14" FontWeight="Bold" />
+            <TextBox x:Name="txtCustomerID" Grid.Row="1" Grid.Column="0" Margin="129,10,44,10" RenderTransformOrigin="0.5,0.5" FontSize="14" FontWeight="Bold" IsEnabled="False" />
 
 
             <Label Content="First Name:" Grid.Row="2" Grid.Column="0" Margin="10,10,213,10" FontWeight="Bold" FontSize="14" FontFamily="Comic Sans MS" />
@@ -51,7 +51,7 @@
             <Button Content="Update" Grid.Row="2" Grid.Column="2" Margin="11,6,152,5" Click="UpdateButton_Click" Height="25"/>
             <Button Content="Add"    Grid.Row="1" Grid.Column="2" Margin="11,3,152,0"  Click="AddButton_Click"  Height="25"/>
         </Grid>
-        <DataGrid x:Name="dataGrid" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <DataGrid x:Name="dataGrid" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="dataGrid_SelectionChanged"/>
 
     </Grid>
 </UserControl>

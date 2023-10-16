@@ -32,7 +32,7 @@ namespace CarGoNowApp.Data
             string server = "localhost";
             string database = "cargonowdb";
             string uid = "root";
-            string pass = "Pass4Desk";
+            string pass = "devdiana2210";
 
             string constring = "Server=" + server + "; database=" + database + "; uid=" + uid + "; pwd=" + pass;
             return constring;
@@ -78,7 +78,7 @@ namespace CarGoNowApp.Data
                 establishConnection();
                 conn.Open();
 
-                string Query = "add into employee  values(default, @fname, @lname,@role, @sin )";
+                string Query = "insert into employee (f_name, l_name, role, sin) Values (@fname, @lname,@role, @sin )";
                 cmd = new MySqlCommand(Query, conn);
                 cmd.Parameters.AddWithValue("@fname", f_name);
                 cmd.Parameters.AddWithValue("@lname", l_name);
@@ -95,30 +95,44 @@ namespace CarGoNowApp.Data
                 MessageBox.Show(ex.Message);
             }
         }
-        public void UpdateEmployee(string f_name, string l_name, string role, string sin)
+        public void UpdateEmployee(int id, string f_name, string l_name, string role, string sin)
         {
             try
             {
                 establishConnection();
                 conn.Open();
-                string Query = "Update employee set f_name=@fname, l_name=@lname, role=@role, sin=@sin where em_id=@ID";
-                cmd = new MySqlCommand(Query, conn);
-                cmd.Parameters.AddWithValue("@fname", f_name);
-                cmd.Parameters.AddWithValue("@lname", l_name);
-                cmd.Parameters.AddWithValue("@role", role);
-                cmd.Parameters.AddWithValue("@sin", sin);
 
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Update successful");
+                string Query = "Update employee set f_name=@fname, l_name=@lname, role=@role, sin=@sin where em_id=@ID";
+                using (cmd = new MySqlCommand(Query, conn))
+                {
+                    cmd = new MySqlCommand(Query, conn);
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@fname", f_name);
+                    cmd.Parameters.AddWithValue("@lname", l_name);
+                    cmd.Parameters.AddWithValue("@role", role);
+                    cmd.Parameters.AddWithValue("@sin", sin);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Employee updated successfully.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Employee  not found or no changes made.");
+                    }
+                }
+
                 conn.Close();
             }
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
-        public void SelectEmployee(int id, string f_name, string l_name, string role, string sin) 
+        public void SelectEmployee(int id, string f_name, string l_name, string role, string sin)
         {
             try
             {
@@ -139,11 +153,11 @@ namespace CarGoNowApp.Data
                 }
                 //if (!flag)
                 //{
-                    //TBProNm.Text = "";
-                    //TBProID.Text = "";
-                    //TBProAm.Text = "";
-                    //TBProPrc.Text = "";
-                    MessageBox.Show("No data with this ID found!");
+                //TBProNm.Text = "";
+                //TBProID.Text = "";
+                //TBProAm.Text = "";
+                //TBProPrc.Text = "";
+                MessageBox.Show("No data with this ID found!");
 
                 //}
                 conn.Close();
@@ -186,7 +200,9 @@ namespace CarGoNowApp.Data
                 establishConnection();
                 conn.Open();
 
-                string Query = "add into car  values(default, @model, @availability,@year, @color, @licenceplate, " +
+                string Query = "insert into car (model,availability, year, color, " +
+                    "license_plate, transmission_type, maintenance_history, " +
+                    "insurance_details, price_per_day) Values (@model, @availability,@year, @color, @licenceplate, " +
                     "@transmissiontype, @maintenancehistory, @insurancedetails, @priceperday )";
                 cmd = new MySqlCommand(Query, conn);
                 cmd.Parameters.AddWithValue("@model", model);
@@ -208,16 +224,21 @@ namespace CarGoNowApp.Data
                 MessageBox.Show(ex.Message);
             }
         }
-        public void UpdateCar(string model, int availability, int year, string color, string license_plate,
+        public void UpdateCar(int id, string model, int availability, int year, string color, string license_plate,
             string transmission_type, string maintenance_history, string insurance_details, double price_per_day)
         {
             try
             {
                 establishConnection();
                 conn.Open();
-                string Query = "Update car set model=@model, availability=@availability,year=@year, color=@color, licence_plate@licenceplate, " +
-                    "transmission_type=@transmissiontype, maintenance_history=@maintenancehistory, insurance_details=@insurancedetails, price_per_day=@priceperday where em_id=@ID";
+
+                string Query = "Update car set model=@model, availability=@availability,year=@year, " +
+                    "color=@color, license_plate=@licenceplate, " +
+                    "transmission_type=@transmissiontype, maintenance_history=@maintenancehistory, " +
+                    "insurance_details=@insurancedetails, price_per_day=@priceperday where car_id=@ID";
                 cmd = new MySqlCommand(Query, conn);
+
+                cmd.Parameters.AddWithValue("@ID", id);
                 cmd.Parameters.AddWithValue("@model", model);
                 cmd.Parameters.AddWithValue("@availability", availability);
                 cmd.Parameters.AddWithValue("@year", year);
@@ -237,7 +258,7 @@ namespace CarGoNowApp.Data
                 MessageBox.Show(ex.Message);
             }
         }
-        public void SelectCar(int id,string model, int availability, int year, string color, string license_plate,
+        public void SelectCar(int id, string model, int availability, int year, string color, string license_plate,
             string transmission_type, string maintenance_history, string insurance_details, double price_per_day)
         {
             try
@@ -273,11 +294,12 @@ namespace CarGoNowApp.Data
                 MessageBox.Show(ex.Message);
             }
         }
-        public DataTable showAllCustomer() { 
-            
-        
+        public DataTable showAllCustomer()
+        {
+
+
             try
-            {   
+            {
                 DataTable dataTable = new DataTable();
                 establishConnection();
                 conn.Open();
@@ -300,7 +322,7 @@ namespace CarGoNowApp.Data
             }
         }
 
-      
+
         public void AddCustomer(string f_name, string l_name, string phone_number, string email,
             string driving_license, DateTime dl_expiry_date)
         {
@@ -309,7 +331,8 @@ namespace CarGoNowApp.Data
                 establishConnection();
                 conn.Open();
 
-                string Query = "add into customer  values(default, @fname, @lname,@phonenumber, @email, @drivinglicense, @dlexpirydate )";
+
+                string Query = "insert into customer  (f_name, l_name, phone_number, email, driving_license,dl_expiry_date ) Values (@fname, @lname,@phonenumber, @email, @drivinglicense, @dlexpirydate )";
                 cmd = new MySqlCommand(Query, conn);
                 cmd.Parameters.AddWithValue("@fname", f_name);
                 cmd.Parameters.AddWithValue("@lname", l_name);
@@ -328,23 +351,25 @@ namespace CarGoNowApp.Data
             }
 
         }
-        public void UpdateCustomer(string f_name, string l_name, string phone_number, string email,
+        public void UpdateCustomer(int id, string f_name, string l_name, string phone_number, string email,
             string driving_license, DateTime dl_expiry_date)
         {
             try
             {
                 establishConnection();
                 conn.Open();
-                string Query = "Update customer set f_name=@fname, l_name=@lname,phone_number=@phonenumber, email=@email, " +
-                    "driving_license=@drivinglicense, dl_expry_date=@dlexpirydate where em_id=@ID";
+
+                string Query = "UPDATE customer SET f_name=@fname, l_name=@lname,phone_number=@phonenumber, email=@email, " +
+                    "driving_license=@drivinglicense, dl_expiry_date=@dlexpirydate where cu_id=@ID";
                 cmd = new MySqlCommand(Query, conn);
+                cmd.Parameters.AddWithValue("@ID", id);
                 cmd.Parameters.AddWithValue("@fname", f_name);
                 cmd.Parameters.AddWithValue("@lname", l_name);
                 cmd.Parameters.AddWithValue("@phonenumber", phone_number);
                 cmd.Parameters.AddWithValue("@email", email);
                 cmd.Parameters.AddWithValue("@drivinglicense", driving_license);
                 cmd.Parameters.AddWithValue("@dlexpirydate", dl_expiry_date);
-                
+
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Update successful");
                 conn.Close();
