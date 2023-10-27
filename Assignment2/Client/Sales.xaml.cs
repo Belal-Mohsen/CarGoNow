@@ -102,22 +102,25 @@ namespace Assignment1
 
         private async void UpdateInventory(int proId, int proAmount)
         {
-            total_price = 0;
-            readDB(proId);
-
+            
+                total_price = 0;
             Product product = new Product();
-            product.Id = proId;
-            product.Name = (string)dataReadDB[2];
-            product.Amount = (int)dataReadDB[0] - proAmount;
-            product.Price = (double)dataReadDB[1];
+            readDB(proId, () =>
+            {
 
-
-
+                
+                product.Id = proId;
+                product.Name = (string)dataReadDB[2];
+                product.Amount = (int)dataReadDB[0] - proAmount;
+                product.Price = (double)dataReadDB[1];
+                
+            });
             var server_response = await client.PutAsJsonAsync("UpdateProduct", product);
             total_price += (double)dataReadDB[1] * proAmount;
         }
+    
 
-        private async void readDB(int id) {
+        private async void readDB(int id,  Action callback) {
             var server_response = await client.GetStringAsync("GetProductById/" + id);
             Response response_JSON = JsonConvert.DeserializeObject<Response>(server_response);
 
@@ -131,17 +134,18 @@ namespace Assignment1
                 dataReadDB[1] = pro_price;
                 dataReadDB[2] = pro_name;
             }
-            else 
-          
-              {
-                    MessageBox.Show("No data with this ID found!");
+            else
 
-             }
+            {
+                MessageBox.Show("No data with this ID found!");
+
+            } 
+            callback();
         }
 
         private async void checkID(int id, Action callback)
         {
-            isValidID = true;
+            isValidID = false;
 
             var server_response = await client.GetStringAsync("GetProductById/" + id);
             Response response_JSON = JsonConvert.DeserializeObject<Response>(server_response);
