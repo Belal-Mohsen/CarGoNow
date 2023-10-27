@@ -66,18 +66,20 @@ namespace Assignment1
             }
         }
 
-        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        private async void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             if (int.TryParse(TBProIdSr.Text, out int value1) && int.TryParse(TBProAm.Text, out int value2))
             {
-                checkID(int.Parse(TBProIdSr.Text));
-                if (isValidID)
+                checkID(int.Parse(TBProIdSr.Text), () =>
                 {
-                    cart.Add(new Product { Id = int.Parse(TBProIdSr.Text), Amount = int.Parse(TBProAm.Text) });
-                    TBProAm.Text = "";
-                    TBProIdSr.Text = "";
-                    MessageBox.Show("Product added to the cart!");
-                }
+                    if (isValidID)
+                    {
+                        cart.Add(new Product { Id = int.Parse(TBProIdSr.Text), Amount = int.Parse(TBProAm.Text) });
+                        TBProAm.Text = "";
+                        TBProIdSr.Text = "";
+                        MessageBox.Show("Product added to the cart!");
+                    }
+                });
             }
             else
             {
@@ -119,25 +121,25 @@ namespace Assignment1
             var server_response = await client.GetStringAsync("GetProductById/" + id);
             Response response_JSON = JsonConvert.DeserializeObject<Response>(server_response);
 
-            int pro_amount = response_JSON.product.Amount;
-            double pro_price = response_JSON.product.Price;
-            string pro_name = response_JSON.product.Name;
-            bool flag = false;
-                while (pro_amount == 0 && pro_price == 0)
-                {
-                    flag = true;
+            if (response_JSON != null && response_JSON.product != null)
+            {
+                int pro_amount = response_JSON.product.Amount;
+                double pro_price = response_JSON.product.Price;
+                string pro_name = response_JSON.product.Name;
+
                 dataReadDB[0] = pro_amount;
                 dataReadDB[1] = pro_price;
                 dataReadDB[2] = pro_name;
-                }
-                if (!flag)
-                {
+            }
+            else 
+          
+              {
                     MessageBox.Show("No data with this ID found!");
 
-                }
+             }
         }
 
-        private async void checkID(int id)
+        private async void checkID(int id, Action callback)
         {
             isValidID = true;
 
@@ -152,7 +154,8 @@ namespace Assignment1
                  MessageBox.Show("No data with this ID found!");
 
                }
-            }
+            callback();
+        }
         }
     }
 
