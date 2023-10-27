@@ -4,6 +4,8 @@ using Npgsql;
 
 namespace Assignment2_Server.Controllers
 {
+    [Route("[controller]")]
+    [ApiController]
     public class ProductController : ControllerBase
     {
         private readonly IConfiguration _configuration;

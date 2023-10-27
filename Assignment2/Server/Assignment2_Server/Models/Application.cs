@@ -74,13 +74,14 @@ namespace Assignment2_Server.Models
         public Response AddProduct(NpgsqlConnection con, Product product)
         {
             Response response = new Response();
+            con.Open();
             string Query = "insert into products values(default, @pro_name, @pro_amount, @pro_price)";
             NpgsqlCommand cmd = new NpgsqlCommand(Query, con);
 
             cmd.Parameters.AddWithValue("@pro_name", product.Name);
             cmd.Parameters.AddWithValue("@pro_amount", product.Amount);
             cmd.Parameters.AddWithValue("@pro_price", product.Price);
-            con.Open();
+           
 
             int i = cmd.ExecuteNonQuery();
             if(i > 0)
