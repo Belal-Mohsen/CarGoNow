@@ -1,9 +1,12 @@
 ﻿using Assignment1.Models;
+using Newtonsoft.Json;
 using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.Http;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,38 +25,26 @@ namespace Assignment1
     /// </summary>
     public partial class Sales : Window
     {
+        HttpClient client = new HttpClient();
         public Sales()
         {
+            client.BaseAddress = new Uri("https://localhost:7120/Product/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             InitializeComponent();
         }
 
         public static NpgsqlCommand cmd;
         public static NpgsqlConnection pg_connection;
         List<Product> cart = new List<Product>();
+        public static object[] dataReadDB = new object[3];
+        public static double total_price;
+        public static bool isValidID;
 
-        private void establishConnection()
-        {
-            try
-            {
-                pg_connection = new NpgsqlConnection(get_ConnectionString());
-                //MessageBox.Show("Connection is done");
-            }
-            catch (NpgsqlException ex)
-            {
-                MessageBox.Show("DataBase cannot be connected! " + ex.Message);
-            }
-        }
-        private string get_ConnectionString()
-        {
-            string host = "Host=localhost;";
-            string port = "Port=5432;";
-            string dbName = "Database=farmDB;";
-            string userName = "Username=postgres;";
-            string password = "Password=Pass4Desk;";
 
-            string conn = string.Format("{0}{1}{2}{3}{4}", host, port, dbName, userName, password);
-            return conn;
-        }
+
+
+
 
         private void BtnChkOut_Click(object sender, RoutedEventArgs e)
         {
@@ -66,7 +57,8 @@ namespace Assignment1
             {
                 foreach (Product product in cart)
                 {
-                    total_price_sales += UpdateInventory(product.Id, product.Amount);
+                    UpdateInventory(product.Id, product.Amount);
+                    total_price_sales += total_price;
                     // MessageBox.Show("Product: " + product.Id + "  Amount: " + product.Amount);
                 }
                 lbl_total.Content = "$" + total_price_sales.ToString("F");
@@ -78,7 +70,7 @@ namespace Assignment1
         {
             if (int.TryParse(TBProIdSr.Text, out int value1) && int.TryParse(TBProAm.Text, out int value2))
             {
-                bool isValidID = checkID();
+                checkID(int.Parse(TBProIdSr.Text));
                 if (isValidID)
                 {
                     cart.Add(new Product { Id = int.Parse(TBProIdSr.Text), Amount = int.Parse(TBProAm.Text) });
@@ -94,117 +86,72 @@ namespace Assignment1
 
         }
 
-        private void BtnShowAll_Click(object sender, RoutedEventArgs e)
+        private async void BtnShowAll_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                establishConnection();
-                pg_connection.Open();
-                string Query = "select * from products";
-                cmd = new NpgsqlCommand(Query, pg_connection);
+            var server_response = await client.GetStringAsync("GetAllProducts");
+            Response response_JSON = JsonConvert.DeserializeObject<Response>(server_response);
 
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
 
-                dataAdapter.Fill(dt);
-                dataGrid.ItemsSource = dt.AsDataView();
-                DataContext = dataAdapter;
-                pg_connection.Close();
-            }
-            catch (NpgsqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+
+            dataGrid.ItemsSource = response_JSON.products;
+            DataContext = this;
         }
 
 
-        private double UpdateInventory(int proId, int proAmount)
+        private async void UpdateInventory(int proId, int proAmount)
         {
-            object[] data;
-            double total_price = 0;
-            data = readDB(proId);
-            try
-            {
-                establishConnection();
-                pg_connection.Open();
-                string Query = "Update products set  pro_amount=@amount where pro_id=@ID";
-                cmd = new NpgsqlCommand(Query, pg_connection);
-                cmd.Parameters.AddWithValue("@amount", ((int) data[0] - proAmount));
-                cmd.Parameters.AddWithValue("@ID", proId);
-                cmd.ExecuteNonQuery();
-                pg_connection.Close();
-                total_price += (double) data[1] * proAmount;
-                return total_price;
-            }
-            catch (NpgsqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-                return 0;
-            }
+            total_price = 0;
+            readDB(proId);
+
+            Product product = new Product();
+            product.Id = proId;
+            product.Name = (string)dataReadDB[2];
+            product.Amount = (int)dataReadDB[0] - proAmount;
+            product.Price = (double)dataReadDB[1];
+
+
+
+            var server_response = await client.PutAsJsonAsync("UpdateProduct", product);
+            total_price += (double)dataReadDB[1] * proAmount;
         }
 
-        private object[] readDB(int id) {
-            object[] data = new object[2];
-            try
-            {
-                establishConnection();
-                pg_connection.Open();
-                string Query = "select * from products where pro_id=@id";
-                cmd = new NpgsqlCommand(Query, pg_connection);
-                cmd.Parameters.AddWithValue("@id", id);
-                NpgsqlDataReader dr = cmd.ExecuteReader(); // read line or more, dataadapter is good for the multi lines
-                bool flag = false;
-                while (dr.Read())
+        private async void readDB(int id) {
+            var server_response = await client.GetStringAsync("GetProductById/" + id);
+            Response response_JSON = JsonConvert.DeserializeObject<Response>(server_response);
+
+            int pro_amount = response_JSON.product.Amount;
+            double pro_price = response_JSON.product.Price;
+            string pro_name = response_JSON.product.Name;
+            bool flag = false;
+                while (pro_amount == 0 && pro_price == 0)
                 {
                     flag = true;
-                    data[0] = dr["pro_amount"];
-                    data[1] = dr["pro_price"];
+                dataReadDB[0] = pro_amount;
+                dataReadDB[1] = pro_price;
+                dataReadDB[2] = pro_name;
                 }
                 if (!flag)
                 {
                     MessageBox.Show("No data with this ID found!");
 
                 }
-                pg_connection.Close();
-                return data;
-            }
-            
-            catch (NpgsqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-                return data;
-            }
         }
 
-        private bool checkID()
+        private async void checkID(int id)
         {
-                try
-                {
-                    establishConnection();
-                    pg_connection.Open();
-                    string Query = "select * from products where pro_id=@id";
-                    cmd = new NpgsqlCommand(Query, pg_connection);
-                    cmd.Parameters.AddWithValue("@id", int.Parse(TBProIdSr.Text));
-                    NpgsqlDataReader dr = cmd.ExecuteReader(); // read line or more, dataadapter is good for the multi lines
-                    bool flag = false;
-                    while (dr.Read())
-                    {
-                        flag = true;
-                    }
-                    if (!flag)
-                    {
-                        MessageBox.Show("No data with this ID found!");
+            isValidID = true;
 
-                    }
-                     
-                    pg_connection.Close();
-                return flag;
-                }
-                catch (NpgsqlException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                return false;
-                }
+            var server_response = await client.GetStringAsync("GetProductById/" + id);
+            Response response_JSON = JsonConvert.DeserializeObject<Response>(server_response);
+            if (response_JSON.statusCode == 200)
+               {
+                 isValidID = true;
+               }
+            if (!isValidID)
+               {
+                 MessageBox.Show("No data with this ID found!");
+
+               }
             }
         }
     }
