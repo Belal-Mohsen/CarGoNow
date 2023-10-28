@@ -46,7 +46,7 @@ namespace Assignment1
 
 
 
-        private void BtnChkOut_Click(object sender, RoutedEventArgs e)
+        private async void BtnChkOut_Click(object sender, RoutedEventArgs e)
         {
             double total_price_sales = 0;
             if (cart.Count == 0)
@@ -57,7 +57,7 @@ namespace Assignment1
             {
                 foreach (Product product in cart)
                 {
-                    UpdateInventory(product.Id, product.Amount);
+                    await UpdateInventory(product.Id, product.Amount);
                     total_price_sales += total_price;
                     // MessageBox.Show("Product: " + product.Id + "  Amount: " + product.Amount);
                 }
@@ -100,7 +100,7 @@ namespace Assignment1
         }
 
 
-        private async void UpdateInventory(int proId, int proAmount)
+        private async Task UpdateInventory(int proId, int proAmount)
         {
             
                 total_price = 0;
@@ -113,10 +113,13 @@ namespace Assignment1
                 product.Name = (string)dataReadDB[2];
                 product.Amount = (int)dataReadDB[0] - proAmount;
                 product.Price = (double)dataReadDB[1];
+
                 
             });
+
             var server_response = await client.PutAsJsonAsync("UpdateProduct", product);
             total_price += (double)dataReadDB[1] * proAmount;
+
         }
     
 
