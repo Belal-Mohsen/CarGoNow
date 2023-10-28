@@ -51,52 +51,80 @@ namespace Assignment1
 
         private async void BtnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            Product product = new Product();
-            product.Id = int.Parse(TBProID.Text);
-            product.Name = TBProNm.Text;
-            product.Amount = int.Parse(TBProAm.Text);
-            product.Price = double.Parse(TBProPrc.Text);
-            
-            var server_response = await client.PutAsJsonAsync("UpdateProduct", product);
-            MessageBox.Show("Product updated successfully!");
+            if (int.TryParse(TBProID.Text, out int value))
+            {
+                Product product = new Product();
+                product.Id = int.Parse(TBProID.Text);
+                product.Name = TBProNm.Text;
+                product.Amount = int.Parse(TBProAm.Text);
+                product.Price = double.Parse(TBProPrc.Text);
+
+                var server_response = await client.PutAsJsonAsync("UpdateProduct", product);
+                MessageBox.Show("Product updated successfully!");
+            }
+            else
+            {
+                MessageBox.Show("Invalid value for product ID!");
+            }
 
         }
 
         private async void BtnSlct_Click(object sender, RoutedEventArgs e)
         {
-            var server_response = await client.GetStringAsync("GetProductById/" + int.Parse(TBProIdSr.Text));
-            Response response_JSON = JsonConvert.DeserializeObject<Response>(server_response);
+            if (int.TryParse(TBProIdSr.Text, out int value))
+            {
+                var server_response = await client.GetStringAsync("GetProductById/" + int.Parse(TBProIdSr.Text));
+                Response response_JSON = JsonConvert.DeserializeObject<Response>(server_response);
 
-            TBProNm.Text = response_JSON.product.Name;
-            TBProID.Text = response_JSON.product.Id.ToString();
-            TBProAm.Text = response_JSON.product.Amount.ToString();
-            TBProPrc.Text = response_JSON.product.Price.ToString();
+                TBProNm.Text = response_JSON.product.Name;
+                TBProID.Text = response_JSON.product.Id.ToString();
+                TBProAm.Text = response_JSON.product.Amount.ToString();
+                TBProPrc.Text = response_JSON.product.Price.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Invalid value for search ID!");
+            }
         }
 
         private async void BtnInsrt_Click(object sender, RoutedEventArgs e)
         {
+            if (int.TryParse(TBProAm.Text, out int value) && double.TryParse(TBProPrc.Text, out double value2) && TBProNm.Text != "")
+            {
 
-            Product product = new Product();
-            //product.Id = int.Parse(TBProIdSr.Text);
-            product.Name = TBProNm.Text;
-            product.Amount = int.Parse(TBProAm.Text);
-            product.Price = double.Parse(TBProPrc.Text);
+                Product product = new Product();
+                //product.Id = int.Parse(TBProIdSr.Text);
+                product.Name = TBProNm.Text;
+                product.Amount = int.Parse(TBProAm.Text);
+                product.Price = double.Parse(TBProPrc.Text);
 
 
-            var server_response = await client.PostAsJsonAsync("AddProduct", product);
+                var server_response = await client.PostAsJsonAsync("AddProduct", product);
 
-            //Response response_JSON = JsonConvert.DeserializeObject<Response>(server_response.ToString());
-            //MessageBox.Show(server_response.ToString());
-            MessageBox.Show("Product inserted successfully!");
+                //Response response_JSON = JsonConvert.DeserializeObject<Response>(server_response.ToString());
+                //MessageBox.Show(server_response.ToString());
+                MessageBox.Show("Product inserted successfully!");
 
+            }
+            else
+            {
+                MessageBox.Show("Invalid data, please make sure you enter valid values!");
+            }
         }
 
         private async void BtnDlt_Click(object sender, RoutedEventArgs e)
         {
-            var response_JSON = await client.DeleteAsync("DeleteProduct/" + int.Parse(TBProIdSr.Text));
-            MessageBox.Show("Product Deleted successfully!");
-            //MessageBox.Show(response_JSON.StatusCode.ToString());
-            //MessageBox.Show(response_JSON.RequestMessage.ToString());
+            if (int.TryParse(TBProID.Text, out int value))
+            {
+                var response_JSON = await client.DeleteAsync("DeleteProduct/" + int.Parse(TBProIdSr.Text));
+                MessageBox.Show("Product Deleted successfully!");
+                //MessageBox.Show(response_JSON.StatusCode.ToString());
+                //MessageBox.Show(response_JSON.RequestMessage.ToString());
+            }
+            else
+            {
+                MessageBox.Show("Invalid value for product ID, please select the product before deleting it!");
+            }
 
         }
 

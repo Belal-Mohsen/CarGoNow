@@ -41,11 +41,6 @@ namespace Assignment1
         public static double total_price;
         public static bool isValidID;
 
-
-
-
-
-
         private async void BtnChkOut_Click(object sender, RoutedEventArgs e)
         {
             double total_price_sales = 0;
@@ -70,16 +65,16 @@ namespace Assignment1
         {
             if (int.TryParse(TBProIdSr.Text, out int value1) && int.TryParse(TBProAm.Text, out int value2))
             {
-                checkID(int.Parse(TBProIdSr.Text), () =>
+                await checkID(int.Parse(TBProIdSr.Text));
+                
+                if (isValidID)
                 {
-                    if (isValidID)
-                    {
-                        cart.Add(new Product { Id = int.Parse(TBProIdSr.Text), Amount = int.Parse(TBProAm.Text) });
-                        TBProAm.Text = "";
-                        TBProIdSr.Text = "";
-                        MessageBox.Show("Product added to the cart!");
-                    }
-                });
+                    cart.Add(new Product { Id = int.Parse(TBProIdSr.Text), Amount = int.Parse(TBProAm.Text) });
+                    TBProAm.Text = "";
+                    TBProIdSr.Text = "";
+                    MessageBox.Show("Product added to the cart!");
+                }
+                
             }
             else
             {
@@ -103,19 +98,14 @@ namespace Assignment1
         private async Task UpdateInventory(int proId, int proAmount)
         {
             
-                total_price = 0;
+            total_price = 0;
             Product product = new Product();
-            readDB(proId, () =>
-            {
-
-                
-                product.Id = proId;
-                product.Name = (string)dataReadDB[2];
-                product.Amount = (int)dataReadDB[0] - proAmount;
-                product.Price = (double)dataReadDB[1];
-
-                
-            });
+            await readDB(proId);
+   
+            product.Id = proId;
+            product.Name = (string)dataReadDB[2];
+            product.Amount = (int)dataReadDB[0] - proAmount;
+            product.Price = (double)dataReadDB[1];
 
             var server_response = await client.PutAsJsonAsync("UpdateProduct", product);
             total_price += (double)dataReadDB[1] * proAmount;
@@ -123,7 +113,7 @@ namespace Assignment1
         }
     
 
-        private async void readDB(int id,  Action callback) {
+        private async Task readDB(int id) {
             var server_response = await client.GetStringAsync("GetProductById/" + id);
             Response response_JSON = JsonConvert.DeserializeObject<Response>(server_response);
 
@@ -143,10 +133,9 @@ namespace Assignment1
                 MessageBox.Show("No data with this ID found!");
 
             } 
-            callback();
         }
 
-        private async void checkID(int id, Action callback)
+        private async Task checkID(int id)
         {
             isValidID = false;
 
@@ -161,7 +150,6 @@ namespace Assignment1
                  MessageBox.Show("No data with this ID found!");
 
                }
-            callback();
         }
         }
     }
