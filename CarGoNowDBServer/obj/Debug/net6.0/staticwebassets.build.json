@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "r85YMnUcOxFkvxa2ZeRo6vLhJOpmfZOC8getJTHVmSI=",
+  "Source": "CarGoNowDBServer",
+  "BasePath": "_content/CarGoNowDBServer",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
