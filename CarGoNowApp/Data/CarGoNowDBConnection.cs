@@ -32,7 +32,7 @@ namespace CarGoNowApp.Data
             string server = "localhost";
             string database = "cargonowdb";
             string uid = "root";
-            string pass = "devdiana2210";
+            string pass = "Pass4Desk";
 
             string constring = "Server=" + server + "; database=" + database + "; uid=" + uid + "; pwd=" + pass;
             return constring;
