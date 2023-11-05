@@ -1,0 +1,19 @@
+﻿<Window x:Class="Lab1.BankCharges"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab1"
+        mc:Ignorable="d"
+        Title="BankCharges" Height="450" Width="800">
+    <Grid>
+        <Label Content="Number of Checks: " HorizontalAlignment="Left" Margin="151,106,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <TextBox x:Name="n_checks" HorizontalAlignment="Left" Margin="400,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" FontSize="16" FontWeight="Bold"/>
+        <Label Content="Account Balance: " HorizontalAlignment="Left" Margin="158,155,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <TextBox x:Name="acc_balance" HorizontalAlignment="Left" Margin="400,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" FontSize="16" FontWeight="Bold"/>
+        <Label Content="Total Bank's Services Fees: " HorizontalAlignment="Left" Margin="158,217,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <Label x:Name="bs_total_fees" Content=" " HorizontalAlignment="Left" Margin="400,217,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Width="120"/>
+        <Button x:Name="calc_fees" Content="Calculate Total Fees" HorizontalAlignment="Left" Margin="400,282,0,0" VerticalAlignment="Top" Width="142" Height="32" FontWeight="Bold" FontSize="14" Click="calc_fees_Click"/>
+
+    </Grid>
+</Window>
