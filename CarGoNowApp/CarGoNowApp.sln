@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarGoNowApp", "CarGoNowApp.csproj", "{11D8E79A-E283-41DE-99BD-A31F98AF306B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarGoNowAppTest", "..\CarGoNowAppTest\CarGoNowAppTest.csproj", "{F27BD83B-27DD-419E-A684-7983114A5AE6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{11D8E79A-E283-41DE-99BD-A31F98AF306B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11D8E79A-E283-41DE-99BD-A31F98AF306B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11D8E79A-E283-41DE-99BD-A31F98AF306B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F27BD83B-27DD-419E-A684-7983114A5AE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F27BD83B-27DD-419E-A684-7983114A5AE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F27BD83B-27DD-419E-A684-7983114A5AE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F27BD83B-27DD-419E-A684-7983114A5AE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
