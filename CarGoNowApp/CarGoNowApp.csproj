@@ -120,6 +120,7 @@
     <Compile Include="EmpolyeeProfile.xaml.cs">
       <DependentUpon>EmpolyeeProfile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\BillCalc.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Views\UCBill.xaml.cs">

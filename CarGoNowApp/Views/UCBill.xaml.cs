@@ -1,4 +1,5 @@
 ﻿using CarGoNowApp.Data;
+using CarGoNowApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -23,6 +24,7 @@ namespace CarGoNowApp.Views
     public partial class UCBill : UserControl
     {
         CarGoNowDBConnection dbConnection = new CarGoNowDBConnection();
+        BillCalc BillCalc = new BillCalc();
         private void showData()
         {
             DataTable data = dbConnection.ShowAllBills();
@@ -37,10 +39,19 @@ namespace CarGoNowApp.Views
 
         private void btn_add_Bill_Click(object sender, RoutedEventArgs e)
         {
-            if(double.TryParse(txtTotalAmount.Text, out double value) && boxPaymentMethod.SelectedIndex>=0 &&
+            if( boxPaymentMethod.SelectedIndex>=0 &&
                 pickerPaymentDate.SelectedDate.HasValue && int.TryParse(txtRentalID.Text, out int inValue))
             {
-                dbConnection.InsertBill(boxPaymentMethod.Text, double.Parse(txtTotalAmount.Text), pickerPaymentDate.SelectedDate.Value, int.Parse(txtRentalID.Text));
+                object[] rentalInfo = dbConnection.GetRentalById(int.Parse(txtRentalID.Text));
+                DateTime  start_day = (DateTime) rentalInfo[1];
+                DateTime end_day = (DateTime)rentalInfo[2];
+                TimeSpan timeDifference = end_day - start_day;
+                int numberOfDays = (int)timeDifference.TotalDays;
+                int car_renal = (int) rentalInfo[3];
+                double car_price = dbConnection.SelectCar(car_renal);
+                double amount = BillCalc.billAmount(numberOfDays, car_price);
+
+                dbConnection.InsertBill(boxPaymentMethod.Text, amount, pickerPaymentDate.SelectedDate.Value, int.Parse(txtRentalID.Text));
                 showData();
             }
             else
@@ -50,6 +61,7 @@ namespace CarGoNowApp.Views
             
             
         }
+        
 
         private void btn_updt_Bill_Click(object sender, RoutedEventArgs e)
         {

@@ -284,41 +284,39 @@ namespace CarGoNowApp.Data
                 MessageBox.Show(ex.Message);
             }
         }
-        public void SelectCar(int id, string model, int availability, int year, string color, string license_plate,
-            string transmission_type, string maintenance_history, string insurance_details, double price_per_day)
+        public double SelectCar(int id)
         {
+
             try
             {
+                double carData = 0;
                 establishConnection();
                 conn.Open();
-                string Query = "select * from car where em_id=@id";
-                cmd = new MySqlCommand(Query, conn);
-                cmd.Parameters.AddWithValue("@id", id);
-                MySqlDataReader dr = cmd.ExecuteReader(); // read line or more, dataadapter is good for the multi lines
-                //bool flag = false;
-                while (dr.Read())
-                {
-                    //flag = true;
-                    //TBProNm.Text = dr["pro_name"].ToString();
-                    //TBProID.Text = dr["pro_id"].ToString();
-                    //TBProAm.Text = dr["pro_amount"].ToString();
-                    //TBProPrc.Text = dr["pro_price"].ToString();
-                }
-                //if (!flag)
-                //{
-                //TBProNm.Text = "";
-                //TBProID.Text = "";
-                //TBProAm.Text = "";
-                //TBProPrc.Text = "";
-                MessageBox.Show("No data with this ID found!");
 
-                //}
-                conn.Close();
+                string selectQuery = "SELECT * from car where car_id=@ID";
+
+                using (MySqlCommand cmd = new MySqlCommand(selectQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+
+                            carData = (double) reader.GetDecimal("price_per_day");
+                            
+                        }
+                    }
+                }
+                return carData;
             }
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
+                return 0;
             }
+            finally { conn.Close(); }
         }
         public DataTable showAllCustomer()
         {
