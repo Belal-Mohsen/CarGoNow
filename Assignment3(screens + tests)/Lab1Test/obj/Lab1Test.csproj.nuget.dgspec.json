@@ -1,14 +1,14 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\belal_xgupjlq\\OneDrive\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Lab1Test\\Lab1Test.csproj": {}
+    "C:\\Users\\diana\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Lab1Test\\Lab1Test.csproj": {}
   },
   "projects": {
-    "C:\\Users\\belal_xgupjlq\\OneDrive\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Assignment3\\Lab1.csproj": {
+    "C:\\Users\\diana\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Assignment3\\Lab1.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\belal_xgupjlq\\OneDrive\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Assignment3\\Lab1.csproj",
+        "projectUniqueName": "C:\\Users\\diana\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Assignment3\\Lab1.csproj",
         "projectName": "Lab1",
-        "projectPath": "C:\\Users\\belal_xgupjlq\\OneDrive\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Assignment3\\Lab1.csproj",
+        "projectPath": "C:\\Users\\diana\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Assignment3\\Lab1.csproj",
         "frameworks": {
           "net472": {
             "projectReferences": {}
@@ -19,21 +19,17 @@
         "net472": {}
       }
     },
-    "C:\\Users\\belal_xgupjlq\\OneDrive\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Lab1Test\\Lab1Test.csproj": {
+    "C:\\Users\\diana\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Lab1Test\\Lab1Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\belal_xgupjlq\\OneDrive\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Lab1Test\\Lab1Test.csproj",
+        "projectUniqueName": "C:\\Users\\diana\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Lab1Test\\Lab1Test.csproj",
         "projectName": "Lab1Test",
-        "projectPath": "C:\\Users\\belal_xgupjlq\\OneDrive\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Lab1Test\\Lab1Test.csproj",
-        "packagesPath": "C:\\Users\\belal_xgupjlq\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\belal_xgupjlq\\OneDrive\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Lab1Test\\obj\\",
+        "projectPath": "C:\\Users\\diana\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Lab1Test\\Lab1Test.csproj",
+        "packagesPath": "C:\\Users\\diana\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\diana\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Lab1Test\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\belal_xgupjlq\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\diana\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -41,15 +37,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\belal_xgupjlq\\OneDrive\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Assignment3\\Lab1.csproj": {
-                "projectPath": "C:\\Users\\belal_xgupjlq\\OneDrive\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Assignment3\\Lab1.csproj"
+              "C:\\Users\\diana\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Assignment3\\Lab1.csproj": {
+                "projectPath": "C:\\Users\\diana\\Desktop\\CarGoNow\\Assignment3(screens + tests)\\Assignment3\\Lab1.csproj"
               }
             }
           }
@@ -101,7 +96,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
